@@ -15,6 +15,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://crawfordnotchcamping.com'),
   title: {
     template: '%s | Crawford Notch Campground',
     default: 'Crawford Notch General Store & Campground',
