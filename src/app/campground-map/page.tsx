@@ -13,7 +13,7 @@ export default function CampgroundMap() {
                     <div className="max-w-4xl mx-auto text-center">
                         <h1
                             className="text-3xl md:text-4xl"
-                            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                            style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "white" }}
                         >
                             Campground Map
                         </h1>
@@ -36,7 +36,7 @@ export default function CampgroundMap() {
                     <div className="max-w-4xl mx-auto">
                         <h2
                             className="text-2xl md:text-3xl text-center mb-8"
-                            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                            style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "white" }}
                         >
                             Site Types
                         </h2>
@@ -46,28 +46,28 @@ export default function CampgroundMap() {
                                 <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
                                     <span className="text-2xl">🏕️</span>
                                 </div>
-                                <h3 className="font-semibold">Tent Sites</h3>
+                                <h3 style={{ color: "white" }} className="font-semibold">Tent Sites</h3>
                                 <p className="text-sm opacity-80">Primitive &amp; Electric</p>
                             </div>
                             <div>
                                 <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
                                     <span className="text-2xl">🚐</span>
                                 </div>
-                                <h3 className="font-semibold">RV Sites</h3>
+                                <h3 style={{ color: "white" }} className="font-semibold">RV Sites</h3>
                                 <p className="text-sm opacity-80">Water &amp; Electric</p>
                             </div>
                             <div>
                                 <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
                                     <span className="text-2xl">🏠</span>
                                 </div>
-                                <h3 className="font-semibold">Cabins</h3>
+                                <h3 style={{ color: "white" }} className="font-semibold">Cabins</h3>
                                 <p className="text-sm opacity-80">Rustic Log Cabins</p>
                             </div>
                             <div>
                                 <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
                                     <span className="text-2xl">⛺</span>
                                 </div>
-                                <h3 className="font-semibold">Yurts</h3>
+                                <h3 style={{ color: "white" }} className="font-semibold">Yurts</h3>
                                 <p className="text-sm opacity-80">Unique Glamping</p>
                             </div>
                         </div>

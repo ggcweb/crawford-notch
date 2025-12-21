@@ -9,7 +9,7 @@ export default function Footer() {
                 <div className="grid md:grid-cols-4 gap-12">
                     {/* Brand & Contact */}
                     <div className="md:col-span-1 space-y-6">
-                        <h3 className="text-2xl font-playfair leading-tight">
+                        <h3 style={{ color: "white" }} className="text-white text-2xl font-playfair leading-tight">
                             Crawford Notch <br />
                             <span className="text-tan-beige opacity-80 text-lg">General Store &amp; Campground</span>
                         </h3>
@@ -38,7 +38,7 @@ export default function Footer() {
                     {/* Quick Link Columns */}
                     <div className="md:col-span-2 grid grid-cols-2 gap-8">
                         <div>
-                            <h4 className="text-tan-beige font-playfair text-lg mb-4">Explore</h4>
+                            <h4 style={{ color: "white" }} className="text-white font-playfair text-lg mb-4">Explore</h4>
                             <ul className="space-y-2 text-white/80">
                                 <li><Link href="/campground" className="hover:text-white transition-colors">Campground</Link></li>
                                 <li><Link href="/cabins" className="hover:text-white transition-colors">Cabins &amp; Yurts</Link></li>
@@ -48,7 +48,7 @@ export default function Footer() {
                             </ul>
                         </div>
                         <div>
-                            <h4 className="text-tan-beige font-playfair text-lg mb-4">Guest Info</h4>
+                            <h4 style={{ color: "white" }} className="text-white font-playfair text-lg mb-4">Guest Info</h4>
                             <ul className="space-y-2 text-white/80">
                                 <li><Link href="/reservations" className="hover:text-white transition-colors">Make a Reservation</Link></li>
                                 <li><Link href="/policies" className="hover:text-white transition-colors">Policies</Link></li>
@@ -60,7 +60,7 @@ export default function Footer() {
 
                     {/* Newsletter */}
                     <div className="md:col-span-1">
-                        <h4 className="text-tan-beige font-playfair text-lg mb-4">Stay Connected</h4>
+                        <h4 style={{ color: "white" }} className="text-white font-playfair text-lg mb-4">Stay Connected</h4>
                         <p className="text-white/80 mb-4 text-sm">Join our newsletter for updates and seasonal specials.</p>
                         <form className="space-y-2" onSubmit={(e) => e.preventDefault()}>
                             <input
