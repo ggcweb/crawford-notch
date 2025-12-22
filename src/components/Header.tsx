@@ -50,7 +50,8 @@ export default function Header() {
                     {/* Mobile Menu Toggle */}
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden w-full py-4 text-tan-beige-light text-lg flex items-center justify-center gap-2 hover:bg-black/20 transition-colors"
+                        style={{ color: 'white' }}
+                        className="md:hidden w-full py-4 text-white text-lg flex items-center justify-center gap-2 hover:bg-black/20 transition-colors"
                         aria-label="Toggle Menu"
                         aria-expanded={isMenuOpen}
                     >
@@ -96,6 +97,7 @@ export default function Header() {
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
+                                        style={{ color: 'white' }}
                                         className={`block px-6 py-4 text-white hover:bg-forest-green transition-colors text-center border-b border-white/5 ${pathname === link.href ? 'bg-forest-green/50' : ''}`}
                                         onClick={() => setIsMenuOpen(false)}
                                     >
