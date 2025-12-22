@@ -66,12 +66,14 @@ export default function CampgroundMapViewer() {
                                     fill={isHovered || isSelected ? color : 'transparent'}
                                     fillOpacity={isHovered ? 0.3 : isSelected ? 0.4 : 0}
                                     stroke={color}
-                                    strokeWidth={isHovered || isSelected ? 3 : 2}
+                                    strokeWidth={isHovered || isSelected ? 0 : 0}
                                     strokeOpacity={0.8}
+                                    // className="hidden"
                                     style={{
                                         cursor: 'pointer',
                                         pointerEvents: 'all',
-                                        transition: 'all 0.2s ease'
+                                        transition: 'all 0.2s ease',
+                                        // display: 'hidden',
                                     }}
                                     onClick={(e) => {
                                         e.stopPropagation(); // Prevent map click
@@ -106,7 +108,7 @@ export default function CampgroundMapViewer() {
                                     onMouseEnter={() => setHoveredSite(site.id)}
                                     onMouseLeave={() => setHoveredSite(null)}
                                 >
-                                    {site.number}
+                                    {/* {site.number} */}
                                 </text>
 
                                 {/* Pulsing ring on hover */}

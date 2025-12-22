@@ -16,7 +16,7 @@ export interface CampgroundSite {
 export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s1",
-        "number": "",
+        "number": "1",
         "type": "tent",
         "x": 79,
         "y": 295,
@@ -33,7 +33,7 @@ export const campgroundSites: CampgroundSite[] = [
     },
     {
         "id": "s2",
-        "number": "",
+        "number": "2",
         "type": "tent",
         "x": 110,
         "y": 295,
@@ -50,8 +50,8 @@ export const campgroundSites: CampgroundSite[] = [
     },
     {
         "id": "s3",
-        "number": "",
-        "type": "tent-popup",
+        "number": "3",
+        "type": "tent",
         "x": 158,
         "y": 300,
         "width": 30,
@@ -67,8 +67,8 @@ export const campgroundSites: CampgroundSite[] = [
     },
     {
         "id": "s4",
-        "number": "",
-        "type": "tent-popup",
+        "number": "4",
+        "type": "tent",
         "x": 190,
         "y": 299,
         "width": 30,
@@ -84,8 +84,8 @@ export const campgroundSites: CampgroundSite[] = [
     },
     {
         "id": "s45",
-        "number": "",
-        "type": "electric",
+        "number": "45",
+        "type": "tent",
         "x": 230,
         "y": 283,
         "width": 30,
@@ -101,8 +101,8 @@ export const campgroundSites: CampgroundSite[] = [
     },
     {
         "id": "s44",
-        "number": "",
-        "type": "electric",
+        "number": "44",
+        "type": "tent",
         "x": 280,
         "y": 283,
         "width": 30,
@@ -118,8 +118,8 @@ export const campgroundSites: CampgroundSite[] = [
     },
     {
         "id": "s43",
-        "number": "",
-        "type": "rv-we",
+        "number": "43",
+        "type": "tent",
         "x": 321,
         "y": 285,
         "width": 35,
@@ -170,7 +170,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s42",
         "number": "42",
-        "type": "electric",
+        "type": "tent",
         "x": 372,
         "y": 265,
         "width": 30,
@@ -187,7 +187,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s47",
         "number": "47",
-        "type": "rv-we",
+        "type": "tent",
         "x": 381,
         "y": 222,
         "width": 35,
@@ -204,7 +204,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s48",
         "number": "48",
-        "type": "rv-we",
+        "type": "tent",
         "x": 421,
         "y": 219,
         "width": 35,
@@ -221,7 +221,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s53",
         "number": "53",
-        "type": "electric",
+        "type": "tent",
         "x": 455,
         "y": 212,
         "width": 30,
@@ -238,7 +238,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s52",
         "number": "52",
-        "type": "electric",
+        "type": "tent",
         "x": 490,
         "y": 207,
         "width": 30,
@@ -255,7 +255,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s54",
         "number": "54",
-        "type": "rv-we",
+        "type": "tent",
         "x": 520,
         "y": 167,
         "width": 35,
@@ -323,7 +323,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s55",
         "number": "55",
-        "type": "electric",
+        "type": "tent",
         "x": 694,
         "y": 189,
         "width": 30,
@@ -425,7 +425,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s46",
         "number": "46",
-        "type": "electric",
+        "type": "tent",
         "x": 309,
         "y": 366,
         "width": 30,
@@ -442,7 +442,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s40",
         "number": "40",
-        "type": "rv-we",
+        "type": "tent",
         "x": 354,
         "y": 355,
         "width": 35,
@@ -476,7 +476,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s38",
         "number": "38",
-        "type": "electric",
+        "type": "tent",
         "x": 355,
         "y": 415,
         "width": 30,
@@ -493,7 +493,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s41",
         "number": "41",
-        "type": "rv-we",
+        "type": "tent-popup",
         "x": 411,
         "y": 346,
         "width": 35,
@@ -510,7 +510,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s39",
         "number": "39",
-        "type": "electric",
+        "type": "tent",
         "x": 414,
         "y": 421,
         "width": 30,
@@ -544,7 +544,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s65",
         "number": "65",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 430,
         "y": 389,
         "width": 30,
@@ -561,7 +561,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s67",
         "number": "67",
-        "type": "tent-popup",
+        "type": "tent",
         "x": 450,
         "y": 416,
         "width": 30,
@@ -578,7 +578,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s49",
         "number": "49",
-        "type": "rv-we",
+        "type": "tent-popup",
         "x": 437,
         "y": 289,
         "width": 35,
@@ -595,7 +595,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s50",
         "number": "50",
-        "type": "rv-we",
+        "type": "tent-popup",
         "x": 452,
         "y": 341,
         "width": 35,
@@ -612,7 +612,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s51",
         "number": "51",
-        "type": "electric",
+        "type": "tent-popup",
         "x": 467,
         "y": 276,
         "width": 30,
@@ -629,7 +629,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s56",
         "number": "56",
-        "type": "rv-we",
+        "type": "tent",
         "x": 491,
         "y": 336,
         "width": 35,
@@ -646,7 +646,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s58",
         "number": "58",
-        "type": "electric",
+        "type": "tent",
         "x": 517,
         "y": 360,
         "width": 30,
@@ -663,7 +663,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s57",
         "number": "57",
-        "type": "electric",
+        "type": "tent-popup",
         "x": 534,
         "y": 310,
         "width": 30,
@@ -680,7 +680,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s59",
         "number": "59",
-        "type": "rv-we",
+        "type": "tent",
         "x": 576,
         "y": 305,
         "width": 35,
@@ -697,7 +697,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s61",
         "number": "61",
-        "type": "electric",
+        "type": "tent",
         "x": 591,
         "y": 354,
         "width": 30,
@@ -714,7 +714,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s60",
         "number": "60",
-        "type": "electric",
+        "type": "tent",
         "x": 546,
         "y": 398,
         "width": 30,
@@ -731,7 +731,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s68",
         "number": "68",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 491,
         "y": 402,
         "width": 30,
@@ -766,7 +766,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s63",
         "number": "63",
-        "type": "rv-we",
+        "type": "tent-popup",
         "x": 570,
         "y": 427,
         "width": 35,
@@ -800,7 +800,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s64",
         "number": "64",
-        "type": "electric",
+        "type": "tent-popup",
         "x": 634,
         "y": 458,
         "width": 30,
@@ -1106,7 +1106,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s81",
         "number": "81",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 689,
         "y": 465,
         "width": 30,
@@ -1123,7 +1123,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s82",
         "number": "82",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 722,
         "y": 491,
         "width": 30,
@@ -1140,7 +1140,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s83",
         "number": "83",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 757,
         "y": 519,
         "width": 30,
@@ -1191,7 +1191,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s86",
         "number": "86",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 894,
         "y": 552,
         "width": 30,
@@ -1223,9 +1223,9 @@ export const campgroundSites: CampgroundSite[] = [
         ]
     },
     {
-        "id": "s10",
+        "id": "cabin10",
         "number": "10",
-        "type": "rv-we",
+        "type": "cabin",
         "x": 117,
         "y": 448,
         "width": 35,
@@ -1311,7 +1311,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s18",
         "number": "18",
-        "type": "electric",
+        "type": "rv-we",
         "x": 242,
         "y": 526,
         "width": 30,
@@ -1328,7 +1328,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s20",
         "number": "20",
-        "type": "electric",
+        "type": "rv-we",
         "x": 256,
         "y": 526,
         "width": 30,
@@ -1362,7 +1362,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s27",
         "number": "27",
-        "type": "electric",
+        "type": "tent",
         "x": 346,
         "y": 461,
         "width": 30,
@@ -1379,7 +1379,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s28",
         "number": "28",
-        "type": "electric",
+        "type": "tent",
         "x": 320,
         "y": 474,
         "width": 30,
@@ -1396,7 +1396,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s29",
         "number": "29",
-        "type": "rv-we",
+        "type": "tent",
         "x": 293,
         "y": 499,
         "width": 35,
@@ -1413,7 +1413,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s25",
         "number": "25",
-        "type": "electric",
+        "type": "tent-popup",
         "x": 372,
         "y": 477,
         "width": 30,
@@ -1430,7 +1430,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s24",
         "number": "24",
-        "type": "electric",
+        "type": "tent",
         "x": 370,
         "y": 507,
         "width": 30,
@@ -1447,7 +1447,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s23",
         "number": "23",
-        "type": "rv-we",
+        "type": "tent",
         "x": 321,
         "y": 519,
         "width": 35,
@@ -1464,7 +1464,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s69",
         "number": "69",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 463,
         "y": 452,
         "width": 30,
@@ -1498,7 +1498,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s71",
         "number": "71",
-        "type": "tent-popup",
+        "type": "tent",
         "x": 532,
         "y": 452,
         "width": 30,
@@ -1515,7 +1515,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s74",
         "number": "74",
-        "type": "electric",
+        "type": "tent-popup",
         "x": 552,
         "y": 472,
         "width": 30,
@@ -1532,7 +1532,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s75",
         "number": "75",
-        "type": "electric",
+        "type": "tent",
         "x": 529,
         "y": 491,
         "width": 30,
@@ -1566,7 +1566,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s73",
         "number": "73",
-        "type": "tent",
+        "type": "tent-popup",
         "x": 510,
         "y": 514,
         "width": 30,
@@ -1583,7 +1583,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s33",
         "number": "33",
-        "type": "electric",
+        "type": "tent",
         "x": 432,
         "y": 490,
         "width": 30,
@@ -1600,7 +1600,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s32",
         "number": "32",
-        "type": "electric",
+        "type": "tent",
         "x": 444,
         "y": 516,
         "width": 30,
@@ -1617,7 +1617,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s31",
         "number": "31",
-        "type": "rv-we",
+        "type": "tent",
         "x": 437,
         "y": 540,
         "width": 35,
@@ -1634,7 +1634,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s30",
         "number": "30",
-        "type": "rv-we",
+        "type": "tent",
         "x": 403,
         "y": 538,
         "width": 35,
@@ -1649,9 +1649,9 @@ export const campgroundSites: CampgroundSite[] = [
         ]
     },
     {
-        "id": "s4-road",
+        "id": "cabin4",
         "number": "4",
-        "type": "rv-we",
+        "type": "cabin",
         "x": 121,
         "y": 549,
         "width": 35,
@@ -1719,7 +1719,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s5",
         "number": "5",
-        "type": "rv-we",
+        "type": "cabin",
         "x": 145,
         "y": 550,
         "width": 35,
@@ -1736,7 +1736,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s6",
         "number": "6",
-        "type": "electric",
+        "type": "cabin",
         "x": 168,
         "y": 550,
         "width": 30,
@@ -1753,7 +1753,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s7",
         "number": "7",
-        "type": "electric",
+        "type": "cabin",
         "x": 187,
         "y": 550,
         "width": 30,
@@ -1770,7 +1770,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s8",
         "number": "8",
-        "type": "rv-we",
+        "type": "cabin",
         "x": 210,
         "y": 548,
         "width": 35,
@@ -1787,7 +1787,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s9",
         "number": "9",
-        "type": "rv-we",
+        "type": "cabin",
         "x": 232,
         "y": 549,
         "width": 35,
@@ -1838,7 +1838,7 @@ export const campgroundSites: CampgroundSite[] = [
     {
         "id": "s21",
         "number": "21",
-        "type": "rv-we",
+        "type": "electric",
         "x": 284,
         "y": 548,
         "width": 35,
@@ -1850,6 +1850,111 @@ export const campgroundSites: CampgroundSite[] = [
             "Electric",
             "Fire Ring",
             "Highway Access"
+        ]
+    },
+    {
+        "id": "s105b",
+        "number": "105B",
+        "type": "tent",
+        "x": 100,
+        "y": 100,
+        "width": 30,
+        "height": 30,
+        "area": "central",
+        "description": "Tent site 105B.",
+        "features": [
+            "Fire Ring",
+            "Picnic Table"
+        ]
+    },
+    {
+        "id": "s109",
+        "number": "109",
+        "type": "tent",
+        "x": 100,
+        "y": 100,
+        "width": 30,
+        "height": 30,
+        "area": "central",
+        "description": "Tent site 109.",
+        "features": [
+            "Fire Ring",
+            "Picnic Table"
+        ]
+    },
+    {
+        "id": "s110",
+        "number": "110",
+        "type": "tent",
+        "x": 100,
+        "y": 100,
+        "width": 30,
+        "height": 30,
+        "area": "central",
+        "description": "Tent site 110.",
+        "features": [
+            "Fire Ring",
+            "Picnic Table"
+        ]
+    },
+    {
+        "id": "s111",
+        "number": "111",
+        "type": "tent",
+        "x": 100,
+        "y": 100,
+        "width": 30,
+        "height": 30,
+        "area": "central",
+        "description": "Tent site 111.",
+        "features": [
+            "Fire Ring",
+            "Picnic Table"
+        ]
+    },
+    {
+        "id": "s112",
+        "number": "112",
+        "type": "tent",
+        "x": 100,
+        "y": 100,
+        "width": 30,
+        "height": 30,
+        "area": "central",
+        "description": "Tent site 112.",
+        "features": [
+            "Fire Ring",
+            "Picnic Table"
+        ]
+    },
+    {
+        "id": "s47b",
+        "number": "47B",
+        "type": "tent",
+        "x": 100,
+        "y": 100,
+        "width": 30,
+        "height": 30,
+        "area": "central",
+        "description": "Tent site 47B.",
+        "features": [
+            "Fire Ring",
+            "Picnic Table"
+        ]
+    },
+    {
+        "id": "s55d",
+        "number": "55D",
+        "type": "tent",
+        "x": 100,
+        "y": 100,
+        "width": 30,
+        "height": 30,
+        "area": "central",
+        "description": "Tent site 55D.",
+        "features": [
+            "Fire Ring",
+            "Picnic Table"
         ]
     }
 ];
