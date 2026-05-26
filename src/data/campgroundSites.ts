@@ -35,8 +35,11 @@ function urlFor(number: string, type: SiteType): string {
     return `${BASE}/site${n}.html`;
 }
 
+// Every site at Crawford Notch includes a picnic table and a fire ring with
+// grill, so they are guaranteed here regardless of how a site is constructed.
 function mk(base: Omit<CampgroundSite, 'detailUrl'>): CampgroundSite {
-    return { ...base, detailUrl: urlFor(base.number, base.type) };
+    const extras = base.amenities.filter((a) => a !== PICNIC && a !== FIRE);
+    return { ...base, amenities: [PICNIC, FIRE, ...extras], detailUrl: urlFor(base.number, base.type) };
 }
 
 // Parking phrasings used across the listing
@@ -50,6 +53,7 @@ const P_FIVE = 'Parking for 5 cars';
 
 const FIRE = 'Fire Ring with Grill';
 const CHARCOAL = 'Charcoal Grill';
+const PICNIC = 'Picnic Table';
 
 function stdTent(id: string, number: string, x: number, y: number, area: Area): CampgroundSite {
     return mk({ id, number, type: 'tent', x, y, area, siteClass: 'Tent Site', parking: P_2ND, amenities: [FIRE] });
@@ -129,6 +133,11 @@ export const campgroundSites: CampgroundSite[] = [
     mk({ id: 's106', number: '106', type: 'tent', x: 776, y: 162, area: 'nature-trails', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
     mk({ id: 's107', number: '107', type: 'tent', x: 826, y: 176, area: 'nature-trails', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
     mk({ id: 's108', number: '108', type: 'tent', x: 840, y: 223, area: 'nature-trails', siteClass: 'Prime Tent Site', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
+    mk({ id: 's107a', number: '107A', type: 'tent', x: 892, y: 178, area: 'nature-trails', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
+    mk({ id: 's109', number: '109', type: 'tent', x: 872, y: 205, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
+    mk({ id: 's111', number: '111', type: 'tent', x: 922, y: 210, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
+    mk({ id: 's110', number: '110', type: 'tent', x: 878, y: 248, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
+    mk({ id: 's112', number: '112', type: 'tent', x: 928, y: 252, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
 
     // --- Tent sites with carry-in / room descriptions ---
     mk({ id: 's47a', number: '47A', type: 'tent', x: 428, y: 258, area: 'central', siteClass: 'Tent Site', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
@@ -203,6 +212,9 @@ export const campgroundSites: CampgroundSite[] = [
     puTent('s82', '82', 722, 491, 'nature-trails'),
     puTent('s83', '83', 757, 519, 'nature-trails'),
     puTent('s86', '86', 894, 552, 'nature-trails'),
+
+    // --- Water-only tent site ---
+    mk({ id: 's22a', number: '22A', type: 'tent', x: 85, y: 445, area: 'roadside', siteClass: 'Tent Site', amenities: ['Water'] }),
 
     // --- Cabins ---
     cabin('cabin1', '1', 193, 448, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE),
