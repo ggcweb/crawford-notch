@@ -1,7 +1,7 @@
 // Site data sourced from crawfordnotchcamping.com/campsite_map.php and the
 // per-site detail pages under /CNCsites/*.html. The x/y values are positions on
-// the campground map image (viewBox 0 0 994 758); all other fields mirror the
-// real listing for each site.
+// the campground map image (viewBox 0 0 994 758). Edit positions visually at
+// /map-editor and paste the exported coordinates back here.
 
 export type SiteType = 'tent' | 'tent-popup' | 'rv-we' | 'rv-electric' | 'cabin' | 'yurt' | 'group';
 export type Area = 'river' | 'central' | 'nature-trails' | 'roadside';
@@ -25,218 +25,121 @@ export interface CampgroundSite {
     note?: string;
 }
 
-const BASE = 'https://crawfordnotchcamping.com/CNCsites';
-
-function urlFor(number: string, type: SiteType): string {
-    const n = number.toLowerCase();
-    if (type === 'cabin') return `${BASE}/cabin${n}.html`;
-    if (type === 'yurt') return `${BASE}/yurt${n}.html`;
-    if (type === 'rv-we' || type === 'rv-electric') return `${BASE}/rv_${n}.html`;
-    return `${BASE}/site${n}.html`;
-}
-
-// Every site at Crawford Notch includes a picnic table and a fire ring with
-// grill, so they are guaranteed here regardless of how a site is constructed.
-function mk(base: Omit<CampgroundSite, 'detailUrl'>): CampgroundSite {
-    const extras = base.amenities.filter((a) => a !== PICNIC && a !== FIRE);
-    return { ...base, amenities: [PICNIC, FIRE, ...extras], detailUrl: urlFor(base.number, base.type) };
-}
-
-// Parking phrasings used across the listing
-const P_2ND = 'Second car on site (additional fee)';
-const P_ONE_REMOTE = 'One car on site; second car remote (additional fee)';
-const P_DRIVEUP2 = 'Drive-up with parking for 2 cars';
-const P_REMOTE = 'Second car remote parking (additional fee)';
-const P_ONE = 'Parking for one car';
-const P_PRIOR = 'Second car parking (prior notice & additional fee)';
-const P_FIVE = 'Parking for 5 cars';
-
-const FIRE = 'Fire Ring with Grill';
-const CHARCOAL = 'Charcoal Grill';
-const PICNIC = 'Picnic Table';
-
-function stdTent(id: string, number: string, x: number, y: number, area: Area): CampgroundSite {
-    return mk({ id, number, type: 'tent', x, y, area, siteClass: 'Tent Site', parking: P_2ND, amenities: [FIRE] });
-}
-
-function puTent(id: string, number: string, x: number, y: number, area: Area): CampgroundSite {
-    return mk({ id, number, type: 'tent-popup', x, y, area, siteClass: 'Tent / Pop-Up Site', parking: P_2ND, amenities: [FIRE] });
-}
-
-function cabin(
-    id: string,
-    number: string,
-    x: number,
-    y: number,
-    rooms: 'One-Room' | 'Two-Room',
-    beds: string,
-    parking: string,
-    petFriendly = false,
-): CampgroundSite {
-    return mk({
-        id,
-        number,
-        type: 'cabin',
-        x,
-        y,
-        area: 'roadside',
-        siteClass: petFriendly ? `Pet-Friendly ${rooms} Cabin` : `${rooms} Cabin`,
-        beds,
-        parking,
-        amenities: [CHARCOAL, FIRE],
-    });
-}
-
-function rv(id: string, number: string, x: number, y: number, electric: boolean): CampgroundSite {
-    return mk({
-        id,
-        number,
-        type: electric ? 'rv-electric' : 'rv-we',
-        x,
-        y,
-        area: 'roadside',
-        siteClass: electric ? 'RV Site — Electric' : 'RV Site — Water & Electric',
-        parking: P_REMOTE,
-        maxTrailerLength: '20 feet',
-        maxMotorhomeLength: '24 feet',
-        amenities: [FIRE],
-    });
-}
-
 export const campgroundSites: CampgroundSite[] = [
-    // --- Riverside prime tent sites ---
-    mk({ id: 's1', number: '1', type: 'tent', x: 79, y: 295, area: 'river', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's2', number: '2', type: 'tent', x: 110, y: 295, area: 'river', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's3', number: '3', type: 'tent', x: 158, y: 300, area: 'river', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's4', number: '4', type: 'tent', x: 190, y: 299, area: 'river', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's45', number: '45', type: 'tent', x: 230, y: 283, area: 'river', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's44', number: '44', type: 'tent', x: 280, y: 283, area: 'river', siteClass: 'Prime Tent Site', capacity: '1 large or 2 medium tents', parking: P_2ND, amenities: [FIRE] }),
-    mk({ id: 's43', number: '43', type: 'tent', x: 321, y: 285, area: 'river', siteClass: 'Prime Tent Site', capacity: '1 large or 2 medium tents', parking: P_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's42a', number: '42A', type: 'tent', x: 354, y: 239, area: 'river', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', parking: P_DRIVEUP2, amenities: [FIRE] }),
-    mk({ id: 's42b', number: '42B', type: 'tent', x: 338, y: 258, area: 'river', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', parking: P_DRIVEUP2, amenities: [FIRE] }),
-    mk({ id: 's42', number: '42', type: 'tent', x: 372, y: 265, area: 'river', siteClass: 'Prime Riverfront Tent Site', parking: P_REMOTE, amenities: [FIRE] }),
-
-    // --- Central / upper loop prime tent sites ---
-    mk({ id: 's47', number: '47', type: 'tent', x: 381, y: 222, area: 'central', siteClass: 'Prime Tent Site', capacity: '1 large or 2 medium tents', carryInCarryOut: true, parking: P_2ND, amenities: [FIRE] }),
-    mk({ id: 's48', number: '48', type: 'tent', x: 421, y: 219, area: 'central', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_2ND, amenities: [FIRE] }),
-    mk({ id: 's53', number: '53', type: 'tent', x: 455, y: 212, area: 'central', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's52', number: '52', type: 'tent', x: 490, y: 207, area: 'central', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent (room for 1 large & 1 small)', parking: P_ONE, amenities: [], note: 'Usually reserved for 5 nights or longer' }),
-    mk({ id: 's54', number: '54', type: 'tent', x: 520, y: 167, area: 'central', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's55a', number: '55A', type: 'tent', x: 584, y: 194, area: 'central', siteClass: 'Prime Tent Site', capacity: '1 large or 2 medium tents', carryInCarryOut: true, parking: P_DRIVEUP2, amenities: [FIRE] }),
-    mk({ id: 's55b', number: '55B', type: 'tent', x: 620, y: 195, area: 'central', siteClass: 'Prime Tent Site', capacity: '1 large or 2 medium tents', carryInCarryOut: true, parking: P_DRIVEUP2, amenities: [FIRE] }),
-    mk({ id: 's55c', number: '55C', type: 'tent', x: 656, y: 194, area: 'central', siteClass: 'Prime Tent Site', carryInCarryOut: true, parking: P_DRIVEUP2, amenities: [FIRE] }),
-    mk({ id: 's55', number: '55', type: 'tent', x: 694, y: 189, area: 'central', siteClass: 'Prime Tent Site', carryInCarryOut: true, parking: P_DRIVEUP2, amenities: [FIRE] }),
-
-    // --- Nature trails prime tent sites ---
-    mk({ id: 's104', number: '104', type: 'tent', x: 707, y: 163, area: 'nature-trails', siteClass: 'Prime Tent Site', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's105', number: '105', type: 'tent', x: 738, y: 152, area: 'nature-trails', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's106', number: '106', type: 'tent', x: 776, y: 162, area: 'nature-trails', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's107', number: '107', type: 'tent', x: 826, y: 176, area: 'nature-trails', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's108', number: '108', type: 'tent', x: 840, y: 223, area: 'nature-trails', siteClass: 'Prime Tent Site', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's107a', number: '107A', type: 'tent', x: 892, y: 178, area: 'nature-trails', siteClass: 'Prime Tent Site', capacity: '2 small or 1 medium tent', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's109', number: '109', type: 'tent', x: 872, y: 205, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
-    mk({ id: 's111', number: '111', type: 'tent', x: 922, y: 210, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
-    mk({ id: 's110', number: '110', type: 'tent', x: 878, y: 248, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
-    mk({ id: 's112', number: '112', type: 'tent', x: 928, y: 252, area: 'nature-trails', siteClass: 'Tent Site', parking: P_ONE, amenities: [] }),
-
-    // --- Tent sites with carry-in / room descriptions ---
-    mk({ id: 's47a', number: '47A', type: 'tent', x: 428, y: 258, area: 'central', siteClass: 'Tent Site', carryInCarryOut: true, parking: P_ONE_REMOTE, amenities: [FIRE] }),
-    mk({ id: 's38', number: '38', type: 'tent', x: 355, y: 415, area: 'central', siteClass: 'Tent Site', capacity: 'Room for 1 medium & 1 small tent', carryInCarryOut: '25 yards', parking: P_PRIOR, amenities: [] }),
-    mk({ id: 's39', number: '39', type: 'tent', x: 414, y: 421, area: 'central', siteClass: 'Tent Site', capacity: 'Room for 1 large & 1 medium tent', carryInCarryOut: '20 yards', parking: P_PRIOR, amenities: [] }),
-    mk({ id: 's66', number: '66', type: 'tent', x: 475, y: 376, area: 'central', siteClass: 'Tent Site', capacity: 'Room for 2 medium tents', parking: P_ONE, amenities: [] }),
-    mk({ id: 's67', number: '67', type: 'tent', x: 450, y: 416, area: 'central', siteClass: 'Tent Site', capacity: 'Room for 1 large & 1 small tent', parking: P_PRIOR, amenities: [] }),
-    mk({ id: 's70', number: '70', type: 'tent', x: 520, y: 423, area: 'central', siteClass: 'Tent Site', capacity: 'Room for 1 medium & 1 small tent', carryInCarryOut: '10 yards', parking: P_PRIOR, amenities: [] }),
-    mk({ id: 's71', number: '71', type: 'tent', x: 532, y: 452, area: 'central', siteClass: 'Tent Site', capacity: 'Room for 1 large & 1 medium tent', carryInCarryOut: '10 yards', parking: P_PRIOR, amenities: [] }),
-
-    // --- Group site ---
-    mk({ id: 's62', number: '62', type: 'group', x: 618, y: 380, area: 'central', siteClass: 'Group Site', capacity: 'Room for 3–4 large & several small tents', carryInCarryOut: true, parking: P_FIVE, amenities: [] }),
-
-    // --- Standard tent sites (second car on site, fire ring) ---
-    stdTent('s46', '46', 309, 366, 'central'),
-    stdTent('s40', '40', 354, 355, 'central'),
-    stdTent('s56', '56', 491, 336, 'central'),
-    stdTent('s58', '58', 517, 360, 'central'),
-    stdTent('s59', '59', 576, 305, 'central'),
-    stdTent('s61', '61', 591, 354, 'central'),
-    stdTent('s60', '60', 546, 398, 'central'),
-    stdTent('s63a', '63A', 593, 472, 'central'),
-    stdTent('s33', '33', 432, 490, 'central'),
-    stdTent('s32', '32', 444, 516, 'central'),
-    stdTent('s31', '31', 437, 540, 'central'),
-    stdTent('s30', '30', 403, 538, 'central'),
-    stdTent('s72', '72', 475, 509, 'central'),
-    stdTent('s75', '75', 529, 491, 'central'),
-    stdTent('s16a', '16A', 232, 441, 'roadside'),
-    stdTent('s16b', '16B', 267, 476, 'roadside'),
-    stdTent('s27', '27', 346, 461, 'roadside'),
-    stdTent('s28', '28', 320, 474, 'roadside'),
-    stdTent('s29', '29', 293, 499, 'roadside'),
-    stdTent('s24', '24', 370, 507, 'roadside'),
-    stdTent('s23', '23', 321, 519, 'roadside'),
-    stdTent('s103', '103', 733, 220, 'nature-trails'),
-    stdTent('s102', '102', 716, 258, 'nature-trails'),
-    stdTent('s101', '101', 803, 249, 'nature-trails'),
-    stdTent('s100', '100', 696, 287, 'nature-trails'),
-    stdTent('s99', '99', 833, 270, 'nature-trails'),
-    stdTent('s98', '98', 727, 320, 'nature-trails'),
-    stdTent('s97', '97', 812, 302, 'nature-trails'),
-    stdTent('s96', '96', 720, 355, 'nature-trails'),
-    stdTent('s95', '95', 799, 333, 'nature-trails'),
-    stdTent('s94', '94', 683, 387, 'nature-trails'),
-    stdTent('s93', '93', 782, 385, 'nature-trails'),
-    stdTent('s92', '92', 827, 367, 'nature-trails'),
-    stdTent('s91', '91', 877, 372, 'nature-trails'),
-    stdTent('s90', '90', 923, 392, 'nature-trails'),
-    stdTent('s89', '89', 955, 439, 'nature-trails'),
-    stdTent('s88', '88', 952, 484, 'nature-trails'),
-    stdTent('s80', '80', 679, 442, 'nature-trails'),
-    stdTent('s84', '84', 806, 545, 'nature-trails'),
-    stdTent('s85', '85', 846, 550, 'nature-trails'),
-    stdTent('s87', '87', 938, 560, 'nature-trails'),
-
-    // --- Tent / pop-up camper sites ---
-    puTent('s41', '41', 411, 346, 'central'),
-    puTent('s65', '65', 430, 389, 'central'),
-    puTent('s49', '49', 437, 289, 'central'),
-    puTent('s50', '50', 452, 341, 'central'),
-    puTent('s51', '51', 467, 276, 'central'),
-    puTent('s57', '57', 534, 310, 'central'),
-    puTent('s68', '68', 491, 402, 'central'),
-    puTent('s63', '63', 570, 427, 'central'),
-    puTent('s64', '64', 634, 458, 'central'),
-    puTent('s69', '69', 463, 452, 'central'),
-    puTent('s74', '74', 552, 472, 'central'),
-    puTent('s73', '73', 510, 514, 'central'),
-    puTent('s25', '25', 372, 477, 'roadside'),
-    puTent('s81', '81', 689, 465, 'nature-trails'),
-    puTent('s82', '82', 722, 491, 'nature-trails'),
-    puTent('s83', '83', 757, 519, 'nature-trails'),
-    puTent('s86', '86', 894, 552, 'nature-trails'),
-
-    // --- Water-only tent site ---
-    mk({ id: 's22a', number: '22A', type: 'tent', x: 85, y: 445, area: 'roadside', siteClass: 'Tent Site', amenities: ['Water'] }),
-
-    // --- Cabins ---
-    cabin('cabin1', '1', 193, 448, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE),
-    cabin('cabin2', '2', 168, 438, 'Two-Room', '1 double bed, 2 sets of bunk beds', P_2ND),
-    cabin('cabin3', '3', 199, 482, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE),
-    cabin('cabin4', '4', 121, 549, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE, true),
-    cabin('s5', '5', 145, 550, 'Two-Room', '2 double beds, 1 set of bunk beds', P_2ND),
-    cabin('s6', '6', 168, 550, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE),
-    cabin('s7', '7', 187, 550, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE),
-    cabin('s8', '8', 210, 548, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE),
-    cabin('s9', '9', 232, 549, 'One-Room', '1 double bed, 1 set of bunk beds', P_ONE_REMOTE),
-    cabin('cabin10', '10', 117, 448, 'Two-Room', '2 double beds, 2 sets of bunk beds', P_2ND),
-
-    // --- RV sites ---
-    rv('s12', '12', 199, 521, false),
-    rv('s14', '14', 221, 523, false),
-    rv('s18', '18', 242, 526, false),
-    rv('s20', '20', 256, 526, false),
-    rv('s22', '22', 274, 526, false),
-    rv('s17', '17', 249, 548, true),
-    rv('s19', '19', 266, 549, true),
-    rv('s21', '21', 284, 548, true),
+    { id: "s1", number: "1", type: "tent", x: 75, y: 295, area: "river", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site1.html" },
+    { id: "s2", number: "2", type: "tent", x: 106, y: 295, area: "river", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site2.html" },
+    { id: "s3", number: "3", type: "tent", x: 153, y: 300, area: "river", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site3.html" },
+    { id: "s4", number: "4", type: "tent", x: 184, y: 299, area: "river", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site4.html" },
+    { id: "s45", number: "45", type: "tent", x: 224, y: 283, area: "river", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site45.html" },
+    { id: "s44", number: "44", type: "tent", x: 273, y: 283, area: "river", siteClass: "Prime Tent Site", capacity: "1 large or 2 medium tents", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site44.html" },
+    { id: "s43", number: "43", type: "tent", x: 313, y: 285, area: "river", siteClass: "Prime Tent Site", capacity: "1 large or 2 medium tents", parking: "Second car remote parking (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site43.html" },
+    { id: "s42a", number: "42A", type: "tent", x: 346, y: 239, area: "river", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "Drive-up with parking for 2 cars", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site42a.html" },
+    { id: "s42b", number: "42B", type: "tent", x: 330, y: 258, area: "river", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "Drive-up with parking for 2 cars", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site42b.html" },
+    { id: "s42", number: "42", type: "tent", x: 363, y: 265, area: "river", siteClass: "Prime Riverfront Tent Site", parking: "Second car remote parking (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site42.html" },
+    { id: "s47", number: "47", type: "tent", x: 372, y: 222, area: "central", siteClass: "Prime Tent Site", capacity: "1 large or 2 medium tents", parking: "Second car on site (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site47.html" },
+    { id: "s48", number: "48", type: "tent", x: 412, y: 219, area: "central", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "Second car on site (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site48.html" },
+    { id: "s53", number: "53", type: "tent", x: 445, y: 212, area: "central", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site53.html" },
+    { id: "s52", number: "52", type: "tent", x: 479, y: 207, area: "central", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent (room for 1 large & 1 small)", parking: "Parking for one car", amenities: ["Picnic Table","Fire Ring with Grill"], note: "Usually reserved for 5 nights or longer", detailUrl: "https://crawfordnotchcamping.com/CNCsites/site52.html" },
+    { id: "s54", number: "54", type: "tent", x: 509, y: 167, area: "central", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site54.html" },
+    { id: "s55a", number: "55A", type: "tent", x: 572, y: 194, area: "central", siteClass: "Prime Tent Site", capacity: "1 large or 2 medium tents", parking: "Drive-up with parking for 2 cars", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site55a.html" },
+    { id: "s55b", number: "55B", type: "tent", x: 607, y: 195, area: "central", siteClass: "Prime Tent Site", capacity: "1 large or 2 medium tents", parking: "Drive-up with parking for 2 cars", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site55b.html" },
+    { id: "s55c", number: "55C", type: "tent", x: 643, y: 194, area: "central", siteClass: "Prime Tent Site", parking: "Drive-up with parking for 2 cars", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site55c.html" },
+    { id: "s55", number: "55", type: "tent", x: 680, y: 189, area: "central", siteClass: "Prime Tent Site", parking: "Drive-up with parking for 2 cars", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site55.html" },
+    { id: "s104", number: "104", type: "tent", x: 693, y: 163, area: "nature-trails", siteClass: "Prime Tent Site", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site104.html" },
+    { id: "s105", number: "105", type: "tent", x: 723, y: 152, area: "nature-trails", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site105.html" },
+    { id: "s106", number: "106", type: "tent", x: 761, y: 162, area: "nature-trails", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site106.html" },
+    { id: "s107", number: "107", type: "tent", x: 810, y: 176, area: "nature-trails", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site107.html" },
+    { id: "s108", number: "108", type: "tent", x: 824, y: 223, area: "nature-trails", siteClass: "Prime Tent Site", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site108.html" },
+    { id: "s107a", number: "107A", type: "tent", x: 845, y: 165, area: "nature-trails", siteClass: "Prime Tent Site", capacity: "2 small or 1 medium tent", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site107a.html" },
+    { id: "s109", number: "109", type: "tent", x: 818, y: 180, area: "nature-trails", siteClass: "Tent Site", parking: "Parking for one car", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site109.html" },
+    { id: "s111", number: "111", type: "tent", x: 858, y: 188, area: "nature-trails", siteClass: "Tent Site", parking: "Parking for one car", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site111.html" },
+    { id: "s110", number: "110", type: "tent", x: 840, y: 200, area: "nature-trails", siteClass: "Tent Site", parking: "Parking for one car", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site110.html" },
+    { id: "s112", number: "112", type: "tent", x: 858, y: 205, area: "nature-trails", siteClass: "Tent Site", parking: "Parking for one car", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site112.html" },
+    { id: "s47a", number: "47A", type: "tent", x: 418, y: 258, area: "central", siteClass: "Tent Site", parking: "One car on site; second car remote (additional fee)", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site47a.html" },
+    { id: "s38", number: "38", type: "tent", x: 347, y: 415, area: "central", siteClass: "Tent Site", capacity: "Room for 1 medium & 1 small tent", parking: "Second car parking (prior notice & additional fee)", carryInCarryOut: "25 yards", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site38.html" },
+    { id: "s39", number: "39", type: "tent", x: 405, y: 421, area: "central", siteClass: "Tent Site", capacity: "Room for 1 large & 1 medium tent", parking: "Second car parking (prior notice & additional fee)", carryInCarryOut: "20 yards", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site39.html" },
+    { id: "s66", number: "66", type: "tent", x: 465, y: 376, area: "central", siteClass: "Tent Site", capacity: "Room for 2 medium tents", parking: "Parking for one car", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site66.html" },
+    { id: "s67", number: "67", type: "tent", x: 440, y: 416, area: "central", siteClass: "Tent Site", capacity: "Room for 1 large & 1 small tent", parking: "Second car parking (prior notice & additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site67.html" },
+    { id: "s70", number: "70", type: "tent", x: 509, y: 423, area: "central", siteClass: "Tent Site", capacity: "Room for 1 medium & 1 small tent", parking: "Second car parking (prior notice & additional fee)", carryInCarryOut: "10 yards", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site70.html" },
+    { id: "s71", number: "71", type: "tent", x: 521, y: 452, area: "central", siteClass: "Tent Site", capacity: "Room for 1 large & 1 medium tent", parking: "Second car parking (prior notice & additional fee)", carryInCarryOut: "10 yards", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site71.html" },
+    { id: "s62", number: "62", type: "group", x: 605, y: 380, area: "central", siteClass: "Group Site", capacity: "Room for 3–4 large & several small tents", parking: "Parking for 5 cars", carryInCarryOut: true, amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site62.html" },
+    { id: "s46", number: "46", type: "tent", x: 301, y: 366, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site46.html" },
+    { id: "s40", number: "40", type: "tent", x: 346, y: 355, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site40.html" },
+    { id: "s56", number: "56", type: "tent", x: 480, y: 336, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site56.html" },
+    { id: "s58", number: "58", type: "tent", x: 506, y: 360, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site58.html" },
+    { id: "s59", number: "59", type: "tent", x: 564, y: 305, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site59.html" },
+    { id: "s61", number: "61", type: "tent", x: 579, y: 354, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site61.html" },
+    { id: "s60", number: "60", type: "tent", x: 535, y: 398, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site60.html" },
+    { id: "s63a", number: "63A", type: "tent", x: 581, y: 472, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site63a.html" },
+    { id: "s33", number: "33", type: "tent", x: 422, y: 490, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site33.html" },
+    { id: "s32", number: "32", type: "tent", x: 434, y: 516, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site32.html" },
+    { id: "s31", number: "31", type: "tent", x: 427, y: 540, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site31.html" },
+    { id: "s30", number: "30", type: "tent", x: 394, y: 538, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site30.html" },
+    { id: "s72", number: "72", type: "tent", x: 465, y: 509, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site72.html" },
+    { id: "s75", number: "75", type: "tent", x: 518, y: 491, area: "central", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site75.html" },
+    { id: "s16a", number: "16A", type: "tent", x: 226, y: 441, area: "roadside", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site16a.html" },
+    { id: "s16b", number: "16B", type: "tent", x: 260, y: 476, area: "roadside", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site16b.html" },
+    { id: "s27", number: "27", type: "tent", x: 338, y: 461, area: "roadside", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site27.html" },
+    { id: "s28", number: "28", type: "tent", x: 312, y: 474, area: "roadside", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site28.html" },
+    { id: "s29", number: "29", type: "tent", x: 286, y: 499, area: "roadside", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site29.html" },
+    { id: "s24", number: "24", type: "tent", x: 361, y: 507, area: "roadside", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site24.html" },
+    { id: "s23", number: "23", type: "tent", x: 313, y: 519, area: "roadside", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site23.html" },
+    { id: "s103", number: "103", type: "tent", x: 719, y: 220, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site103.html" },
+    { id: "s102", number: "102", type: "tent", x: 702, y: 258, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site102.html" },
+    { id: "s101", number: "101", type: "tent", x: 787, y: 249, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site101.html" },
+    { id: "s100", number: "100", type: "tent", x: 682, y: 287, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site100.html" },
+    { id: "s99", number: "99", type: "tent", x: 817, y: 270, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site99.html" },
+    { id: "s98", number: "98", type: "tent", x: 713, y: 320, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site98.html" },
+    { id: "s97", number: "97", type: "tent", x: 796, y: 302, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site97.html" },
+    { id: "s96", number: "96", type: "tent", x: 706, y: 355, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site96.html" },
+    { id: "s95", number: "95", type: "tent", x: 784, y: 333, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site95.html" },
+    { id: "s94", number: "94", type: "tent", x: 669, y: 387, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site94.html" },
+    { id: "s93", number: "93", type: "tent", x: 767, y: 385, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site93.html" },
+    { id: "s92", number: "92", type: "tent", x: 811, y: 367, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site92.html" },
+    { id: "s91", number: "91", type: "tent", x: 860, y: 372, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site91.html" },
+    { id: "s90", number: "90", type: "tent", x: 906, y: 392, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site90.html" },
+    { id: "s89", number: "89", type: "tent", x: 937, y: 439, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site89.html" },
+    { id: "s88", number: "88", type: "tent", x: 934, y: 484, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site88.html" },
+    { id: "s80", number: "80", type: "tent", x: 665, y: 442, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site80.html" },
+    { id: "s84", number: "84", type: "tent", x: 790, y: 545, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site84.html" },
+    { id: "s85", number: "85", type: "tent", x: 830, y: 550, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site85.html" },
+    { id: "s87", number: "87", type: "tent", x: 920, y: 560, area: "nature-trails", siteClass: "Tent Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site87.html" },
+    { id: "s41", number: "41", type: "tent-popup", x: 402, y: 346, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site41.html" },
+    { id: "s65", number: "65", type: "tent-popup", x: 420, y: 389, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site65.html" },
+    { id: "s49", number: "49", type: "tent-popup", x: 427, y: 289, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site49.html" },
+    { id: "s50", number: "50", type: "tent-popup", x: 442, y: 341, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site50.html" },
+    { id: "s51", number: "51", type: "tent-popup", x: 457, y: 276, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site51.html" },
+    { id: "s57", number: "57", type: "tent-popup", x: 523, y: 310, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site57.html" },
+    { id: "s68", number: "68", type: "tent-popup", x: 480, y: 402, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site68.html" },
+    { id: "s63", number: "63", type: "tent-popup", x: 558, y: 427, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site63.html" },
+    { id: "s64", number: "64", type: "tent-popup", x: 621, y: 458, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site64.html" },
+    { id: "s69", number: "69", type: "tent-popup", x: 453, y: 452, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site69.html" },
+    { id: "s74", number: "74", type: "tent-popup", x: 540, y: 472, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site74.html" },
+    { id: "s73", number: "73", type: "tent-popup", x: 499, y: 514, area: "central", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site73.html" },
+    { id: "s25", number: "25", type: "tent-popup", x: 363, y: 477, area: "roadside", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site25.html" },
+    { id: "s81", number: "81", type: "tent-popup", x: 675, y: 465, area: "nature-trails", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site81.html" },
+    { id: "s82", number: "82", type: "tent-popup", x: 708, y: 491, area: "nature-trails", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site82.html" },
+    { id: "s83", number: "83", type: "tent-popup", x: 742, y: 519, area: "nature-trails", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site83.html" },
+    { id: "s86", number: "86", type: "tent-popup", x: 877, y: 552, area: "nature-trails", siteClass: "Tent / Pop-Up Site", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site86.html" },
+    { id: "s22a", number: "22A", type: "tent", x: 58, y: 446, area: "roadside", siteClass: "Tent Site", amenities: ["Picnic Table","Fire Ring with Grill","Water"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/site22a.html" },
+    { id: "cabin1", number: "1", type: "cabin", x: 187, y: 448, area: "roadside", siteClass: "One-Room Cabin", beds: "1 double bed, 1 set of bunk beds", parking: "One car on site; second car remote (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin1.html" },
+    { id: "cabin2", number: "2", type: "cabin", x: 163, y: 438, area: "roadside", siteClass: "Two-Room Cabin", beds: "1 double bed, 2 sets of bunk beds", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin2.html" },
+    { id: "cabin3", number: "3", type: "cabin", x: 193, y: 482, area: "roadside", siteClass: "One-Room Cabin", beds: "1 double bed, 1 set of bunk beds", parking: "One car on site; second car remote (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin3.html" },
+    { id: "cabin4", number: "4", type: "cabin", x: 116, y: 549, area: "roadside", siteClass: "Pet-Friendly One-Room Cabin", beds: "1 double bed, 1 set of bunk beds", parking: "One car on site; second car remote (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin4.html" },
+    { id: "s5", number: "5", type: "cabin", x: 140, y: 550, area: "roadside", siteClass: "Two-Room Cabin", beds: "2 double beds, 1 set of bunk beds", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin5.html" },
+    { id: "s6", number: "6", type: "cabin", x: 163, y: 550, area: "roadside", siteClass: "One-Room Cabin", beds: "1 double bed, 1 set of bunk beds", parking: "One car on site; second car remote (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin6.html" },
+    { id: "s7", number: "7", type: "cabin", x: 181, y: 550, area: "roadside", siteClass: "One-Room Cabin", beds: "1 double bed, 1 set of bunk beds", parking: "One car on site; second car remote (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin7.html" },
+    { id: "s8", number: "8", type: "cabin", x: 204, y: 548, area: "roadside", siteClass: "One-Room Cabin", beds: "1 double bed, 1 set of bunk beds", parking: "One car on site; second car remote (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin8.html" },
+    { id: "s9", number: "9", type: "cabin", x: 226, y: 549, area: "roadside", siteClass: "One-Room Cabin", beds: "1 double bed, 1 set of bunk beds", parking: "One car on site; second car remote (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin9.html" },
+    { id: "cabin10", number: "10", type: "cabin", x: 112, y: 448, area: "roadside", siteClass: "Two-Room Cabin", beds: "2 double beds, 2 sets of bunk beds", parking: "Second car on site (additional fee)", amenities: ["Picnic Table","Fire Ring with Grill","Charcoal Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/cabin10.html" },
+    { id: "s12", number: "12", type: "rv-we", x: 193, y: 521, area: "roadside", siteClass: "RV Site — Water & Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_12.html" },
+    { id: "s14", number: "14", type: "rv-we", x: 215, y: 523, area: "roadside", siteClass: "RV Site — Water & Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_14.html" },
+    { id: "s18", number: "18", type: "rv-we", x: 235, y: 526, area: "roadside", siteClass: "RV Site — Water & Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_18.html" },
+    { id: "s20", number: "20", type: "rv-we", x: 249, y: 526, area: "roadside", siteClass: "RV Site — Water & Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_20.html" },
+    { id: "s22", number: "22", type: "rv-we", x: 267, y: 526, area: "roadside", siteClass: "RV Site — Water & Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_22.html" },
+    { id: "s17", number: "17", type: "rv-electric", x: 242, y: 548, area: "roadside", siteClass: "RV Site — Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_17.html" },
+    { id: "s19", number: "19", type: "rv-electric", x: 259, y: 549, area: "roadside", siteClass: "RV Site — Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_19.html" },
+    { id: "s21", number: "21", type: "rv-electric", x: 277, y: 548, area: "roadside", siteClass: "RV Site — Electric", parking: "Second car remote parking (additional fee)", maxTrailerLength: "20 feet", maxMotorhomeLength: "24 feet", amenities: ["Picnic Table","Fire Ring with Grill"], detailUrl: "https://crawfordnotchcamping.com/CNCsites/rv_21.html" },
 ];
 
 export function getSiteTypeLabel(type: SiteType): string {
@@ -254,13 +157,13 @@ export function getSiteTypeLabel(type: SiteType): string {
 
 export function getSiteTypeColor(type: SiteType): string {
     switch (type) {
-        case 'tent': return '#2d5a27'; // forest green
-        case 'tent-popup': return '#4a7c2c'; // lighter green
-        case 'rv-we': return '#1e40af'; // blue
-        case 'rv-electric': return '#ea580c'; // orange
-        case 'cabin': return '#5d3a1e'; // bark brown
-        case 'yurt': return '#7c3aed'; // purple
-        case 'group': return '#b91c1c'; // red
+        case 'tent': return '#2d5a27';
+        case 'tent-popup': return '#4a7c2c';
+        case 'rv-we': return '#1e40af';
+        case 'rv-electric': return '#ea580c';
+        case 'cabin': return '#5d3a1e';
+        case 'yurt': return '#7c3aed';
+        case 'group': return '#b91c1c';
         default: return '#2d5a27';
     }
 }
