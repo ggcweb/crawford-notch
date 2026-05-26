@@ -90,8 +90,13 @@ export default function CampgroundMapViewer() {
             {/* Map Container with fixed aspect ratio to lock alignment */}
             <div className="relative w-full aspect-[994/758]">
                 <Image
+<<<<<<< HEAD
                     src="/image.png"
                     alt="Map of Crawford Notch Campground showing numbered campsites, cabins, and facilities"
+=======
+                    src="/image.jpg"
+                    alt="Campground Map"
+>>>>>>> 6021953 (stuff)
                     fill
                     priority
                     sizes="(max-width: 1152px) 100vw, 1152px"

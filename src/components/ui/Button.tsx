@@ -11,19 +11,19 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps & { fullWidth?: boolean }>(
     ({ className = '', variant = 'primary', size = 'md', href, fullWidth = false, children, ...props }, ref) => {
-        const baseStyles = 'inline-flex items-center justify-center rounded transition-all duration-300 font-semibold focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-green focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
+        const baseStyles = 'inline-flex items-center justify-center rounded-lg transition-all duration-300 font-bold focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-green focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
 
         const variants = {
             primary: 'bg-forest-green text-white hover:bg-forest-green-dark hover:shadow-lg',
             secondary: 'bg-bark-brown text-white hover:bg-bark-brown-dark hover:shadow-lg',
-            outline: 'border-2 border-bark-brown text-bark-brown hover:bg-bark-brown hover:text-white',
-            ghost: 'text-bark-brown hover:bg-bark-brown/10',
+            outline: 'border-2 border-bark-brown-dark text-bark-brown-dark hover:bg-bark-brown-dark hover:text-white',
+            ghost: 'text-bark-brown-dark hover:bg-bark-brown/10',
         };
 
         const sizes = {
-            sm: 'h-9 px-4 text-sm',
-            md: 'h-11 px-6 text-base',
-            lg: 'h-14 px-8 text-lg',
+            sm: 'h-10 px-5 text-base',
+            md: 'h-12 px-7 text-lg',
+            lg: 'h-14 px-10 text-xl',
         };
 
         const widthClass = fullWidth ? 'w-full' : '';

@@ -7,15 +7,15 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
 export const Card = forwardRef<HTMLDivElement, CardProps>(
     ({ className = '', variant = 'default', children, ...props }, ref) => {
         const variants = {
-            default: 'bg-white shadow-md rounded-lg',
-            glass: 'glass rounded-lg',
-            outline: 'border-2 border-bark-brown/20 rounded-lg bg-transparent',
+            default: 'bg-white shadow-lg rounded-xl',
+            glass: 'glass rounded-xl',
+            outline: 'border-2 border-bark-brown/20 rounded-xl bg-transparent',
         };
 
         return (
             <div
                 ref={ref}
-                className={`${variants[variant]} p-6 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-xl ${className}`}
+                className={`${variants[variant]} p-7 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-2xl ${className}`}
                 {...props}
             >
                 {children}

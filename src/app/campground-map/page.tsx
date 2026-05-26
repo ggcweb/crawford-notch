@@ -9,19 +9,22 @@ export default function CampgroundMap() {
 
             <main className="flex-1">
                 {/* Page Title */}
-                <section className="bg-deep-burgundy text-white py-12 px-4">
-                    <div className="max-w-4xl mx-auto text-center">
+                <section className="bg-deep-burgundy text-white py-14 md:py-16 px-4 relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+                    <div className="max-w-4xl mx-auto text-center relative z-10">
+                        <p className="text-white/50 text-sm uppercase tracking-[0.2em] mb-3">Interactive</p>
                         <h1
-                            className="text-3xl md:text-4xl"
+                            className="text-3xl md:text-4xl lg:text-5xl"
                             style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "white" }}
                         >
                             Campground Map
                         </h1>
+                        <p className="text-white/60 mt-3 max-w-xl mx-auto">Click any campsite to see details, features, and availability</p>
                     </div>
                 </section>
 
                 {/* Map Section */}
-                <section className="bg-tan-beige py-12 px-2 md:px-4">
+                <section className="bg-tan-beige py-10 md:py-12 px-2 md:px-4">
                     <div className="max-w-6xl mx-auto">
                         <p className="text-lg text-bark-brown-dark text-center mb-8 leading-relaxed max-w-3xl mx-auto">
                             Our 100-acre campground features over 100 campsites, cabins, and yurts spread throughout our beautiful wooded property along the Saco River.
@@ -34,42 +37,31 @@ export default function CampgroundMap() {
                 {/* Map Legend */}
                 <section className="bg-forest-green text-white py-12 px-4">
                     <div className="max-w-4xl mx-auto">
-                        <h2
-                            className="text-2xl md:text-3xl text-center mb-8"
-                            style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "white" }}
-                        >
-                            Site Types
-                        </h2>
+                        <div className="text-center mb-8">
+                            <p className="text-white/50 text-sm uppercase tracking-[0.2em] mb-3">Legend</p>
+                            <h2
+                                className="text-2xl md:text-3xl"
+                                style={{ fontFamily: "'Playfair Display', Georgia, serif", color: "white" }}
+                            >
+                                Site Types
+                            </h2>
+                        </div>
 
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                            <div>
-                                <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
-                                    <span className="text-2xl">🏕️</span>
+                            {[
+                                { icon: "🏕️", title: "Tent Sites", desc: "Primitive & Electric" },
+                                { icon: "🚐", title: "RV Sites", desc: "Water & Electric" },
+                                { icon: "🏠", title: "Cabins", desc: "Rustic Log Cabins" },
+                                { icon: "⛺", title: "Yurts", desc: "Unique Glamping" },
+                            ].map((type, i) => (
+                                <div key={i} className="group cursor-default">
+                                    <div className="w-14 h-14 bg-white/10 group-hover:bg-white/20 rounded-xl mx-auto mb-3 flex items-center justify-center transition-all duration-300">
+                                        <span className="text-2xl group-hover:scale-110 transition-transform duration-300">{type.icon}</span>
+                                    </div>
+                                    <h3 style={{ color: "white" }} className="font-semibold text-sm">{type.title}</h3>
+                                    <p className="text-xs opacity-70 mt-1">{type.desc}</p>
                                 </div>
-                                <h3 style={{ color: "white" }} className="font-semibold">Tent Sites</h3>
-                                <p className="text-sm opacity-80">Primitive &amp; Electric</p>
-                            </div>
-                            <div>
-                                <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
-                                    <span className="text-2xl">🚐</span>
-                                </div>
-                                <h3 style={{ color: "white" }} className="font-semibold">RV Sites</h3>
-                                <p className="text-sm opacity-80">Water &amp; Electric</p>
-                            </div>
-                            <div>
-                                <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
-                                    <span className="text-2xl">🏠</span>
-                                </div>
-                                <h3 style={{ color: "white" }} className="font-semibold">Cabins</h3>
-                                <p className="text-sm opacity-80">Rustic Log Cabins</p>
-                            </div>
-                            <div>
-                                <div className="w-12 h-12 bg-tan-beige rounded-full mx-auto mb-3 flex items-center justify-center">
-                                    <span className="text-2xl">⛺</span>
-                                </div>
-                                <h3 style={{ color: "white" }} className="font-semibold">Yurts</h3>
-                                <p className="text-sm opacity-80">Unique Glamping</p>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </section>
@@ -77,38 +69,30 @@ export default function CampgroundMap() {
                 {/* Facilities */}
                 <section className="bg-tan-beige-light py-12 px-4">
                     <div className="max-w-4xl mx-auto">
-                        <h2
-                            className="text-2xl md:text-3xl text-bark-brown text-center mb-8"
-                            style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
-                        >
-                            Facilities
-                        </h2>
+                        <div className="text-center mb-8">
+                            <p className="text-forest-green text-sm uppercase tracking-[0.2em] mb-3 font-semibold">On-Site</p>
+                            <h2
+                                className="text-2xl md:text-3xl text-bark-brown-dark"
+                                style={{ fontFamily: "'Playfair Display', Georgia, serif" }}
+                            >
+                                Facilities
+                            </h2>
+                        </div>
 
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center text-bark-brown">
-                            <div className="bg-white p-4 rounded shadow-sm">
-                                <div className="text-3xl mb-2">🚿</div>
-                                <h3 className="font-semibold">Bathhouse</h3>
-                            </div>
-                            <div className="bg-white p-4 rounded shadow-sm">
-                                <div className="text-3xl mb-2">🏪</div>
-                                <h3 className="font-semibold">General Store</h3>
-                            </div>
-                            <div className="bg-white p-4 rounded shadow-sm">
-                                <div className="text-3xl mb-2">🪵</div>
-                                <h3 className="font-semibold">Firewood</h3>
-                            </div>
-                            <div className="bg-white p-4 rounded shadow-sm">
-                                <div className="text-3xl mb-2">🚰</div>
-                                <h3 className="font-semibold">Water Stations</h3>
-                            </div>
-                            <div className="bg-white p-4 rounded shadow-sm">
-                                <div className="text-3xl mb-2">🗑️</div>
-                                <h3 className="font-semibold">Waste Disposal</h3>
-                            </div>
-                            <div className="bg-white p-4 rounded shadow-sm">
-                                <div className="text-3xl mb-2">🏊</div>
-                                <h3 className="font-semibold">River Access</h3>
-                            </div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-5 text-center text-bark-brown-dark">
+                            {[
+                                { icon: "🚿", title: "Bathhouse" },
+                                { icon: "🏪", title: "General Store" },
+                                { icon: "🪵", title: "Firewood" },
+                                { icon: "🚰", title: "Water Stations" },
+                                { icon: "🗑️", title: "Waste Disposal" },
+                                { icon: "🏊", title: "River Access" },
+                            ].map((facility, i) => (
+                                <div key={i} className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 group">
+                                    <div className="text-3xl mb-3 group-hover:scale-110 transition-transform duration-300">{facility.icon}</div>
+                                    <h3 className="font-semibold text-sm">{facility.title}</h3>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </section>
