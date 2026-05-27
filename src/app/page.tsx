@@ -1,11 +1,35 @@
 "use client";
 import Link from 'next/link';
-import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { Icon, type IconName } from '@/components/ui/Icon';
+
+const highlights: { icon: IconName; label: string }[] = [
+  { icon: "pine", label: "100 Acres" },
+  { icon: "tent", label: "100 Sites" },
+  { icon: "cabin", label: "Cabins & Yurts" },
+  { icon: "leaf", label: "Natural Setting" },
+  { icon: "mountain", label: "Epic Views" },
+  { icon: "paw", label: "Pet Friendly" },
+];
+
+const activities: { icon: IconName; title: string; desc: string }[] = [
+  { icon: "boot", title: "Hiking", desc: "Miles of scenic trails" },
+  { icon: "bike", title: "Biking", desc: "Explore on two wheels" },
+  { icon: "water", title: "River Wading", desc: "Cool off in the Saco" },
+  { icon: "compass", title: "Attractions", desc: "Close to area hotspots" },
+  { icon: "road", title: "Scenic Byway", desc: "The Route 302 tour" },
+  { icon: "no-signal", title: "Digital Detox", desc: "Disconnect to reconnect" },
+];
+
+const ctas: { href: string; icon: IconName; title: string; desc: string; bg: string }[] = [
+  { href: "/campground-map", icon: "map", title: "Campsite Map", desc: "Explore our interactive layout", bg: "bg-deep-burgundy" },
+  { href: "/rates", icon: "tag", title: "Rates & Specials", desc: "View our seasonal pricing", bg: "bg-bark-brown" },
+  { href: "/reservations", icon: "calendar", title: "Book Now", desc: "Start your adventure today", bg: "bg-forest-green" },
+];
 
 export default function Home() {
   const jsonLd = {
@@ -36,7 +60,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-lora">
+    <div className="min-h-screen flex flex-col">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -44,174 +68,120 @@ export default function Home() {
       <Header />
 
       <main className="flex-1">
-        {/* Welcome / Reservation Status Section */}
+        {/* Welcome / reservation status */}
         <Section className="relative overflow-hidden">
           <div className="grid md:grid-cols-2 gap-14 lg:gap-20 items-center">
-            {/* Left Column - Welcome */}
-            <div className="space-y-7 animate-fade-in-up">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="h-px w-10 bg-forest-green"></span>
-                <span className="text-forest-green text-base uppercase tracking-[0.2em] font-bold">Welcome</span>
-              </div>
-              <h2 className="text-4xl md:text-5xl text-bark-brown-dark font-playfair leading-tight">
-                Your Mountain Getaway Awaits
+            <div className="space-y-6 animate-fade-in-up">
+              <p className="text-rust text-sm uppercase tracking-[0.2em] font-semibold rule-accent">Welcome</p>
+              <h2 className="text-bark-brown-dark">
+                Your mountain getaway awaits
               </h2>
-              <p className="text-xl text-foreground leading-relaxed">
+              <p className="text-lg text-foreground">
                 Crawford Notch Campground is a family-owned and operated campground nestled in the heart of the <strong>White Mountains of New Hampshire</strong>. Scenic Crawford Notch is well known for its awe-inspiring views, majestic mountains, unspoiled wilderness, and miles of hiking trails.
               </p>
-              <p className="text-xl text-foreground leading-relaxed">
-                Our wooded setting along the banks of the Saco River features secluded campsites and log cabins, offering the perfect escape from the hustle and bustle.
+              <p className="text-lg text-foreground">
+                Our wooded setting along the banks of the Saco River features secluded campsites and log cabins &mdash; the perfect escape from the hustle and bustle.
               </p>
-              <div className="flex flex-row gap-4">
-                  <div className="flex flex-wrap gap-5 pt-3 text-white">
-                    {/* <Button href="/campground" variant="primary" size="lg">Explore the Campground</Button> */}
-                    <Button href="/reservations" variant="primary" size="lg">Book Your Stay</Button>
-                  </div>
-                  <div className="flex flex-wrap gap-5 pt-3 text-white">
-                    <Button href="/campground" variant="primary" size="lg">Explore the Campground</Button>
-                    {/* <Button href="/reservations" variant="outline" size="lg">Book Your Stay</Button> */}
-                  </div>
+              <div className="flex flex-wrap gap-4 pt-2">
+                <Button href="/reservations" variant="accent" size="lg">Book Your Stay</Button>
+                <Button href="/campground" variant="outline" size="lg">Explore the Campground</Button>
               </div>
-              
             </div>
 
-            {/* Right Column - Reservation Status */}
             <div className="animate-fade-in-up delay-200">
-              <Card variant="default" className="bg-forest-green p-10 md:p-12 text-center shadow-2xl relative overflow-hidden border-none">
-                {/* Subtle Pattern */}
-                <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-
-                <div className="relative z-10 space-y-6">
-                  <div className="inline-flex items-center gap-2 bg-white/20 px-5 py-2 rounded-full text-base font-bold tracking-wide">
-                    <span className="w-2.5 h-2.5 bg-green-400 rounded-full animate-pulse"></span>
-                    Now Accepting Reservations
-                  </div>
-                  <h2 className="text-3xl md:text-4xl font-playfair font-bold">
-                    We are open for 2025 reservations!
-                  </h2>
-                  <p className="text-lg leading-relaxed">
-                    Please be aware that we require face masks in all buildings (bathhouse and store).
-                  </p>
-                  <div className="bg-white/15 p-5 rounded-xl backdrop-blur-sm">
-                    <p className="text-base leading-relaxed">
-                      Full payment over the phone is due the week before you come. We&apos;ll verify your info, get signatures, give you your key card, and getting you on your way!
-                    </p>
-                  </div>
-                  <p className="text-2xl italic font-playfair pt-2">Stay healthy!</p>
+              <Card className="bg-forest-green text-cream border-forest-green-dark p-9 md:p-10">
+                <div className="inline-flex items-center gap-2 border border-cream/30 px-4 py-1.5 rounded-sm text-sm font-medium tracking-wide">
+                  <span className="w-2 h-2 bg-ochre rounded-full" />
+                  Now accepting reservations
                 </div>
+                <h3 className="text-cream mt-6 mb-4">
+                  We&apos;re open for the 2025 season
+                </h3>
+                <p className="text-cream/90 mb-5">
+                  Please be aware that we require face masks in all buildings (bathhouse and store).
+                </p>
+                <div className="bg-bark-brown-dark/25 border border-cream/15 p-5 rounded-sm">
+                  <p className="text-cream/90 text-[0.95rem]">
+                    Full payment over the phone is due the week before you arrive. We&apos;ll verify your info, collect signatures, hand over your key card, and get you on your way.
+                  </p>
+                </div>
+                <p className="text-xl italic font-display text-ochre mt-6">Stay healthy!</p>
               </Card>
             </div>
           </div>
         </Section>
 
-        {/* Fire Safety Alert - Compact Banner */}
-        <div className="bg-gradient-to-r from-red-800 to-red-700">
-          <div className="max-w-7xl mx-auto px-5 md:px-8 py-5">
-            <div className="flex items-center gap-5">
-              <span className="text-3xl flex-shrink-0">🔥</span>
-              <div className="flex-1">
-                <span className="font-bold text-lg" style={{ color: '#ffffff' }}>Fire Restrictions Notice:</span>{' '}
-                <span style={{ color: '#ffffff' }} className="text-lg">White Mountain National Forest Fire Restrictions may be in place. Check with the USDA and WMNF website for current restrictions before your visit.</span>
-              </div>
+        {/* Fire safety alert */}
+        <div className="bg-rust-dark text-cream">
+          <div className="max-w-6xl mx-auto px-5 md:px-8 py-5">
+            <div className="flex items-center gap-4">
+              <Icon name="fire" className="w-8 h-8 flex-shrink-0 text-ochre" />
+              <p className="text-[0.95rem] md:text-base">
+                <span className="font-semibold">Fire restrictions notice:</span>{' '}
+                White Mountain National Forest fire restrictions may be in place. Check the USDA and WMNF website for current restrictions before your visit.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Property Highlights */}
-        <Section variant="dark" className="relative">
-          {/* Subtle Pattern */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
+        {/* Property highlights */}
+        <Section variant="dark">
+          <div className="max-w-4xl mx-auto text-center mb-12">
+            <p className="text-ochre text-sm uppercase tracking-[0.2em] mb-4 font-semibold rule-accent rule-accent-center">What makes us special</p>
+            <h2 className="text-cream">
+              Nestled in the heart of the White Mountains
+            </h2>
+            <p className="text-cream/80 text-xl mt-3 font-display italic">
+              Along the banks of the Saco River
+            </p>
+          </div>
 
-          <div className="max-w-5xl mx-auto text-center relative z-10">
-            <div className="mb-12">
-              <p style={{ color: '#ffffff' }} className="text-base uppercase tracking-[0.2em] mb-4 font-bold">What makes us special</p>
-              <h2 style={{ color: '#ffffff' }} className="text-4xl md:text-5xl font-playfair font-bold">
-                Nestled in the Heart of The White Mountains
-              </h2>
-              <p style={{ color: '#ffffff' }} className="text-2xl mt-4 font-lora italic">
-                Along the banks of the Saco River
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 md:gap-7">
-              {[
-                { icon: "🌲", label: "100 Acres" },
-                { icon: "⛺", label: "100 Sites" },
-                { icon: "🏠", label: "Cabins & Yurts" },
-                { icon: "🍂", label: "Natural Setting" },
-                { icon: "🏔️", label: "Epic Views" },
-                { icon: "🐾", label: "Pet Friendly" },
-              ].map((feature, i) => (
-                <div key={i} className="flex flex-col items-center p-6 bg-white/[0.08] rounded-2xl hover:bg-white/[0.15] transition-all duration-300 backdrop-blur-sm group cursor-default">
-                  <span className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{feature.icon}</span>
-                  <span style={{ color: '#ffffff' }} className="font-bold text-base md:text-lg">{feature.label}</span>
-                </div>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-5">
+            {highlights.map((feature) => (
+              <div key={feature.label} className="flex flex-col items-center text-center p-6 border border-cream/12 rounded-sm hover:border-ochre/50 transition-colors">
+                <Icon name={feature.icon} className="w-9 h-9 mb-3 text-ochre" />
+                <span className="text-cream font-medium text-[0.95rem]">{feature.label}</span>
+              </div>
+            ))}
           </div>
         </Section>
 
-        {/* Activities Section */}
+        {/* Activities */}
         <Section variant="light">
           <div className="text-center mb-14">
-            <p className="text-forest-green text-base uppercase tracking-[0.2em] mb-4 font-bold">Things to do</p>
-            <h2 className="text-4xl md:text-5xl text-bark-brown-dark font-playfair mb-5">We Offer</h2>
-            <div className="h-1 w-20 bg-forest-green mx-auto rounded-full" />
+            <p className="text-rust text-sm uppercase tracking-[0.2em] mb-4 font-semibold rule-accent rule-accent-center">Things to do</p>
+            <h2 className="text-bark-brown-dark">What we offer</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
-            {[
-              { icon: "🥾", title: "Hiking", desc: "Miles of scenic trails" },
-              { icon: "🚴", title: "Biking", desc: "Explore on two wheels" },
-              { icon: "🏊", title: "River Wading", desc: "Cool off in the Saco" },
-              { icon: "🗺️", title: "Attractions", desc: "Close to area hotspots" },
-              { icon: "🛣️", title: "Scenic Byway", desc: "Route 302 Tour" },
-              { icon: "📵", title: "Digital Detox", desc: "Disconnect to reconnect" },
-            ].map((item, i) => (
-              <Card key={i} className="flex items-center gap-6 p-7 bg-white hover:border-forest-green/30 border border-transparent transition-all group">
-                <div className="w-16 h-16 flex items-center justify-center bg-forest-green/10 rounded-xl text-3xl flex-shrink-0 group-hover:bg-forest-green/20 transition-colors">
-                  {item.icon}
-                </div>
-                <div className="text-left">
-                  <h3 className="text-xl font-bold text-bark-brown-dark">{item.title}</h3>
-                  <p className="text-base text-foreground">{item.desc}</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {activities.map((item) => (
+              <Card key={item.title} className="flex items-center gap-5 hover:border-forest-green/40 transition-colors">
+                <span className="w-14 h-14 flex items-center justify-center bg-forest-green-light text-forest-green rounded-sm flex-shrink-0">
+                  <Icon name={item.icon} className="w-7 h-7" />
+                </span>
+                <div>
+                  <h3 className="text-xl text-bark-brown-dark mb-0.5">{item.title}</h3>
+                  <p className="text-muted text-[0.95rem]">{item.desc}</p>
                 </div>
               </Card>
             ))}
           </div>
-          <div className="mt-14 text-center text-white">
-            <Button href="/activities" variant="primary" size="lg">View All Activities</Button>
+          <div className="mt-12 text-center">
+            <Button href="/activities" variant="primary" size="lg">View all activities</Button>
           </div>
         </Section>
 
-        {/* CTA Blocks */}
+        {/* CTA blocks */}
         <div className="grid md:grid-cols-3">
-          <Link href="/campground-map" className="group relative h-80 md:h-96 overflow-hidden flex items-center justify-center bg-deep-burgundy">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-500 z-10" />
-            <div className="relative z-20 text-center p-8">
-              <span className="text-5xl mb-5 block group-hover:scale-110 transition-transform duration-500">🗺️</span>
-              <h3 style={{ color: '#ffffff' }} className="text-3xl md:text-4xl font-playfair font-bold mb-3">Campsite Map</h3>
-              <p style={{ color: '#ffffff' }} className="opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 text-lg tracking-wide">Explore our interactive layout →</p>
-            </div>
-          </Link>
-
-          <Link href="/rates" className="group relative h-80 md:h-96 overflow-hidden flex items-center justify-center bg-bark-brown">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-500 z-10" />
-            <div className="relative z-20 text-center p-8">
-              <span className="text-5xl mb-5 block group-hover:scale-110 transition-transform duration-500">💲</span>
-              <h3 style={{ color: '#ffffff' }} className="text-3xl md:text-4xl font-playfair font-bold mb-3">Rates & Specials</h3>
-              <p style={{ color: '#ffffff' }} className="opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 text-lg tracking-wide">View our competitive pricing →</p>
-            </div>
-          </Link>
-
-          <Link href="/reservations" className="group relative h-80 md:h-96 overflow-hidden flex items-center justify-center bg-forest-green">
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/55 transition-colors duration-500 z-10" />
-            <div className="relative z-20 text-center p-8">
-              <span className="text-5xl mb-5 block group-hover:scale-110 transition-transform duration-500">📅</span>
-              <h3 style={{ color: '#ffffff' }} className="text-3xl md:text-4xl font-playfair font-bold mb-3">Book Now</h3>
-              <p style={{ color: '#ffffff' }} className="opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0 text-lg tracking-wide">Start your adventure today →</p>
-            </div>
-          </Link>
+          {ctas.map((cta) => (
+            <Link key={cta.href} href={cta.href} className={`group relative h-72 md:h-80 overflow-hidden flex flex-col items-center justify-center text-center p-8 ${cta.bg} text-cream`}>
+              <span className="absolute top-0 left-0 right-0 h-1 bg-ochre scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+              <Icon name={cta.icon} className="w-12 h-12 mb-5 text-ochre transition-transform duration-500 group-hover:-translate-y-1" />
+              <h3 className="text-cream text-2xl md:text-3xl mb-2">{cta.title}</h3>
+              <p className="text-cream/85">{cta.desc}</p>
+              <span className="mt-4 text-ochre text-sm tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-500">Learn more &rarr;</span>
+            </Link>
+          ))}
         </div>
       </main>
 
