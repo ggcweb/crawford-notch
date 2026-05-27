@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Lora, Playfair_Display } from "next/font/google";
+import { Fraunces, Libre_Franklin } from "next/font/google";
 import "./globals.css";
 
-const lora = Lora({
-  variable: "--font-lora",
+const fraunces = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
   display: "swap",
+  axes: ["opsz", "SOFT"],
 });
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const libreFranklin = Libre_Franklin({
+  variable: "--font-body",
   subsets: ["latin"],
   display: "swap",
 });
@@ -56,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${lora.variable} ${playfair.variable} antialiased`}
+        className={`${fraunces.variable} ${libreFranklin.variable} antialiased`}
       >
         {children}
       </body>
