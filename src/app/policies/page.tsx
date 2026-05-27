@@ -9,7 +9,7 @@ export default function Policies() {
         <div className="min-h-screen flex flex-col">
             <Header />
             <main className="flex-1">
-                <Section className="bg-deep-burgundy text-cream py-20 md:py-24">
+                <Section variant="burgundy" className="py-20 md:py-24">
                     <div className="text-center">
                         <p className="text-ochre text-sm uppercase tracking-[0.2em] mb-4 font-semibold">Guest Information</p>
                         <h1 className="text-cream">Campground Policies</h1>

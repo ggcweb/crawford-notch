@@ -135,7 +135,7 @@ export default function Rates() {
                 </Section>
 
                 {/* Note */}
-                <Section className="bg-deep-burgundy text-cream py-14 text-center">
+                <Section variant="burgundy" className="py-14 text-center">
                     <p className="text-cream/90 text-lg md:text-xl">
                         Rates are subject to change. Please contact us for the most current pricing and availability.
                     </p>

@@ -95,7 +95,7 @@ export default function Header() {
 
             {/* Navigation */}
             <nav className={`w-full sticky top-0 z-50 bg-bark-brown-dark transition-shadow duration-300 ${isScrolled ? 'shadow-lg' : ''}`}>
-                <div className="max-w-6xl mx-auto px-4">
+                <div className="max-w-7xl mx-auto px-4">
                     {/* Mobile bar */}
                     <div className="md:hidden flex items-center justify-between py-3.5">
                         <Link href="/" className="text-cream font-display text-xl">
@@ -126,10 +126,10 @@ export default function Header() {
                                     <Link
                                         href={link.href}
                                         aria-current={isActive ? 'page' : undefined}
-                                        className={`relative inline-block px-3.5 py-4 text-[0.95rem] tracking-tight transition-colors ${isActive ? 'text-ochre' : 'text-cream/85 hover:text-cream'}`}
+                                        className={`relative inline-block px-3 py-4 text-[0.95rem] tracking-tight whitespace-nowrap transition-colors ${isActive ? 'text-ochre' : 'text-cream/85 hover:text-cream'}`}
                                     >
                                         {link.label}
-                                        <span className={`absolute bottom-2 left-3.5 right-3.5 h-px bg-ochre origin-left transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
+                                        <span className={`absolute bottom-2 left-3 right-3 h-px bg-ochre origin-left transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
                                     </Link>
                                 </li>
                             );

@@ -1,7 +1,7 @@
 import { HTMLAttributes, forwardRef } from 'react';
 
 interface SectionProps extends HTMLAttributes<HTMLDivElement> {
-    variant?: 'default' | 'light' | 'dark' | 'brand';
+    variant?: 'default' | 'light' | 'dark' | 'brand' | 'burgundy';
     fullWidth?: boolean;
 }
 
@@ -12,6 +12,7 @@ export const Section = forwardRef<HTMLDivElement, SectionProps>(
             light: 'bg-cream text-foreground',
             dark: 'bg-bark-brown-dark text-cream',
             brand: 'bg-forest-green text-cream',
+            burgundy: 'bg-deep-burgundy text-cream',
         };
 
         return (

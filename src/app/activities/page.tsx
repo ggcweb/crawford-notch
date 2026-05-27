@@ -101,7 +101,7 @@ export default function Activities() {
                     </div>
                 </Section>
 
-                <Section className="bg-deep-burgundy text-cream text-center py-20 md:py-24">
+                <Section variant="burgundy" className="text-center py-20 md:py-24">
                     <div className="max-w-2xl mx-auto">
                         <Icon name="no-signal" className="w-12 h-12 mx-auto mb-6 text-ochre" />
                         <h2 className="text-cream">A Chance to Disconnect</h2>
