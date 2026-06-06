@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
@@ -27,6 +28,11 @@ const features: { icon: IconName; title: string; desc: string }[] = [
     { icon: "pine", title: "Wooded Privacy", desc: "Our 100-acre property provides natural privacy between sites, giving you a true wilderness camping experience." },
     { icon: "binoculars", title: "Wildlife", desc: "Keep your eyes open for moose, deer, and a variety of bird species that call this beautiful area home." },
 ];
+
+export const metadata: Metadata = {
+    title: "Campground",
+    description: "Secluded wooded and riverside campsites at Crawford Notch Campground in the White Mountains of New Hampshire. Tent and RV camping along the Saco River.",
+};
 
 export default function Campground() {
     return (

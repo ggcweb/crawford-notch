@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
@@ -13,6 +14,11 @@ const generalRules = [
 ];
 
 const prohibited = ["Firearms and weapons", "Fireworks", "Loud music or generators", "Outside firewood", "Illegal substances", "Clotheslines between trees", "Cutting or damaging trees", "Glass containers at river"];
+
+export const metadata: Metadata = {
+    title: "Campground Rules",
+    description: "Campground rules and guidelines for a safe, enjoyable stay at Crawford Notch Campground in the White Mountains of New Hampshire.",
+};
 
 export default function Rules() {
     return (

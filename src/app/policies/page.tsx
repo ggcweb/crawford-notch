@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Icon } from '@/components/ui/Icon';
+
+export const metadata: Metadata = {
+    title: "Policies",
+    description: "Reservation, deposit, cancellation, and campground policies for Crawford Notch Campground in New Hampshire. Plan your White Mountains stay with confidence.",
+};
 
 export default function Policies() {
     return (

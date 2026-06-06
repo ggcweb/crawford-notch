@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import CampgroundMapViewer from '@/components/CampgroundMapViewer';
@@ -18,6 +19,11 @@ const facilities: { icon: IconName; title: string }[] = [
     { icon: "trash", title: "Waste Disposal" },
     { icon: "water", title: "River Access" },
 ];
+
+export const metadata: Metadata = {
+    title: "Campground Map",
+    description: "Explore our interactive map of tent, RV, cabin, and yurt sites at Crawford Notch Campground in the White Mountains of New Hampshire.",
+};
 
 export default function CampgroundMap() {
     return (

@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/private/',
         },
-        sitemap: 'https://www.crawfordnotchcamping.com/sitemap.xml',
+        sitemap: 'https://crawfordnotchcamping.com/sitemap.xml',
     };
 }

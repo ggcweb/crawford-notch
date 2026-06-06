@@ -6,6 +6,7 @@ import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Icon, type IconName } from '@/components/ui/Icon';
+import { BOOKING_URL } from '@/lib/booking';
 
 const highlights: { icon: IconName; label: string }[] = [
   { icon: "pine", label: "100 Acres" },
@@ -25,10 +26,10 @@ const activities: { icon: IconName; title: string; desc: string }[] = [
   { icon: "no-signal", title: "Digital Detox", desc: "Disconnect to reconnect" },
 ];
 
-const ctas: { href: string; icon: IconName; title: string; desc: string; bg: string }[] = [
+const ctas: { href: string; icon: IconName; title: string; desc: string; bg: string; external?: boolean }[] = [
   { href: "/campground-map", icon: "map", title: "Campsite Map", desc: "Explore our interactive layout", bg: "bg-deep-burgundy" },
   { href: "/rates", icon: "tag", title: "Rates & Specials", desc: "View our seasonal pricing", bg: "bg-bark-brown" },
-  { href: "/reservations", icon: "calendar", title: "Book Now", desc: "Start your adventure today", bg: "bg-forest-green" },
+  { href: BOOKING_URL, icon: "calendar", title: "Book Now", desc: "Start your adventure today", bg: "bg-forest-green", external: true },
 ];
 
 export default function Home() {
@@ -36,7 +37,7 @@ export default function Home() {
     '@context': 'https://schema.org',
     '@type': 'Campground',
     name: 'Crawford Notch General Store & Campground',
-    image: 'https://www.crawfordnotchcamping.com/images/og-image.jpg',
+    image: 'https://crawfordnotchcamping.com/image.jpg',
     description: 'Family-owned campground in the heart of the White Mountains, NH. Offering campsites, cabins, and yurts along the Saco River.',
     address: {
       '@type': 'PostalAddress',
@@ -46,7 +47,7 @@ export default function Home() {
       postalCode: '03812',
       addressCountry: 'US',
     },
-    url: 'https://www.crawfordnotchcamping.com',
+    url: 'https://crawfordnotchcamping.com',
     telephone: '+1-603-374-2779',
     openingHoursSpecification: [
       {
@@ -83,7 +84,7 @@ export default function Home() {
                 Our wooded setting along the banks of the Saco River features secluded campsites and log cabins &mdash; the perfect escape from the hustle and bustle.
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
-                <Button href="/reservations" variant="accent" size="lg">Book Your Stay</Button>
+                <Button href={BOOKING_URL} target="_blank" rel="noopener noreferrer" variant="accent" size="lg">Book Your Stay</Button>
                 <Button href="/campground" variant="outline" size="lg">Explore the Campground</Button>
               </div>
             </div>
@@ -174,7 +175,13 @@ export default function Home() {
         {/* CTA blocks */}
         <div className="grid md:grid-cols-3">
           {ctas.map((cta) => (
-            <Link key={cta.href} href={cta.href} className={`group relative h-72 md:h-80 overflow-hidden flex flex-col items-center justify-center text-center p-8 ${cta.bg} text-cream`}>
+            <Link
+              key={cta.href}
+              href={cta.href}
+              target={cta.external ? '_blank' : undefined}
+              rel={cta.external ? 'noopener noreferrer' : undefined}
+              className={`group relative h-72 md:h-80 overflow-hidden flex flex-col items-center justify-center text-center p-8 ${cta.bg} text-cream`}
+            >
               <span className="absolute top-0 left-0 right-0 h-1 bg-ochre scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
               <Icon name={cta.icon} className="w-12 h-12 mb-5 text-ochre transition-transform duration-500 group-hover:-translate-y-1" />
               <h3 className="text-cream text-2xl md:text-3xl mb-2">{cta.title}</h3>

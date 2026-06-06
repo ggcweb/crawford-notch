@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
@@ -10,6 +11,11 @@ const routes = [
     { from: "From Montreal, QC", time: "3.5 hours", steps: ["Take I-89 South to I-93 South", "Take Exit 35 for Route 3", "Follow Route 3 North through Franconia Notch", "Turn right onto Route 302 East", "Campground is on the right in Crawford Notch"] },
     { from: "From North Conway, NH", time: "15 min", steps: ["Take Route 302 West", "Pass through Bartlett", "Continue into Crawford Notch", "Campground is on the left"] },
 ];
+
+export const metadata: Metadata = {
+    title: "Directions",
+    description: "Directions to Crawford Notch General Store & Campground at 1777 Route 302, Hart's Location, NH, in the heart of the White Mountains.",
+};
 
 export default function Directions() {
     return (

@@ -1,0 +1,19 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Crawford Notch">
+  <!-- Brand: deep spruce field-guide emblem. Two peaks with the notch between them. -->
+  <defs>
+    <clipPath id="tile"><rect width="64" height="64" rx="13"/></clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect width="64" height="64" fill="#1b3829"/>
+    <!-- Sun / ochre moon over the notch -->
+    <circle cx="44" cy="21" r="6" fill="#ecbb64"/>
+    <!-- Far ridge for depth -->
+    <path d="M4 52 L20 30 L31 42 L44 31 L60 52 Z" fill="#2c5440"/>
+    <!-- Foreground double peak with the central notch, in cream -->
+    <path d="M2 56 L23 26 L32 38 L41 29 L62 56 Z" fill="#fbf6ec"/>
+    <!-- Rust snow-melt accent tracing the notch ridge -->
+    <path d="M23 26 L32 38 L41 29" stroke="#a8431c" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
+    <!-- Ground -->
+    <rect x="0" y="54" width="64" height="10" fill="#fbf6ec"/>
+  </g>
+</svg>

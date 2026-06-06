@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     siteName: 'Crawford Notch Campground',
     images: [
       {
-        url: '/images/og-image.jpg', // We will need to ensure this exists or use a default
-        width: 1200,
-        height: 630,
-        alt: 'Crawford Notch Campground',
+        url: '/image.jpg',
+        width: 1830,
+        height: 1396,
+        alt: 'Autumn foliage along the Saco River at Crawford Notch, New Hampshire',
       },
     ],
   },
@@ -50,6 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Crawford Notch General Store & Campground',
     description: 'Family camping in the heart of the White Mountains, NH.',
+    images: ['/image.jpg'],
   },
   robots: {
     index: true,
