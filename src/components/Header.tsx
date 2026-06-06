@@ -42,7 +42,7 @@ export default function Header() {
                 <div className="max-w-6xl mx-auto px-6 py-2.5 flex justify-between items-center">
                     <span className="flex items-center gap-2 text-sm text-cream/90">
                         <svg className="w-4 h-4 text-ochre" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        1777 Route 302, Hart&apos;s Location, NH 03812
+                        1138 US Route 302, Hart&apos;s Location, NH 03812
                     </span>
                     <div className="flex items-center gap-6">
                         <a href="tel:6033742779" className="flex items-center gap-2 text-cream hover:text-ochre transition-colors font-medium text-sm">

@@ -14,7 +14,7 @@ const routes = [
 
 export const metadata: Metadata = {
     title: "Directions",
-    description: "Directions to Crawford Notch General Store & Campground at 1777 Route 302, Hart's Location, NH, in the heart of the White Mountains.",
+    description: "Directions to Crawford Notch General Store & Campground at 1138 US Route 302, Hart's Location, NH, in the heart of the White Mountains.",
 };
 
 export default function Directions() {
@@ -38,7 +38,7 @@ export default function Directions() {
                                 </div>
                                 <div className="space-y-1.5 text-lg text-foreground">
                                     <p className="font-semibold">Crawford Notch General Store &amp; Campground</p>
-                                    <p>1777 Route 302</p>
+                                    <p>1138 US Route 302</p>
                                     <p>Hart&apos;s Location, NH 03812</p>
                                     <a href="tel:6033742779" className="text-rust hover:text-rust-dark font-semibold font-display block mt-4 text-2xl">(603) 374-2779</a>
                                 </div>
@@ -47,7 +47,7 @@ export default function Directions() {
 
                         <Card className="p-2 overflow-hidden h-[460px]">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2869.8574741697386!2d-71.40!3d44.18!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cb39e0e8c0d9a47%3A0x9d7d9c1d9c1d9c1d!2sCrawford%20Notch%20General%20Store%20%26%20Campground!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+                                src="https://www.google.com/maps?q=Crawford+Notch+General+Store+%26+Campground%2C+1138+US+Route+302%2C+Hart%27s+Location%2C+NH+03812&output=embed"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
@@ -90,7 +90,7 @@ export default function Directions() {
                                 <Icon name="compass" className="w-7 h-7 text-forest-green" />
                                 GPS &amp; Connectivity
                             </h3>
-                            <p className="text-foreground mb-5">Enter <strong>1777 Route 302, Hart&apos;s Location, NH 03812</strong> into your GPS.</p>
+                            <p className="text-foreground mb-5">Enter <strong>1138 US Route 302, Hart&apos;s Location, NH 03812</strong> into your GPS.</p>
                             <div className="bg-deep-burgundy/6 p-5 rounded-sm flex items-start gap-3 border border-deep-burgundy/15">
                                 <svg className="w-6 h-6 text-deep-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
                                 <p className="text-deep-burgundy text-[0.95rem] font-medium">
