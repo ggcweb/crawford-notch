@@ -42,7 +42,7 @@ export default function Rates() {
                 <Section variant="dark" className="py-20 md:py-24 text-center">
                     <p className="text-ochre text-sm uppercase tracking-[0.2em] mb-4 font-semibold">Pricing</p>
                     <h1 className="text-cream">Rates &amp; Specials</h1>
-                    <p className="text-cream/80 text-lg mt-3 tracking-wide">2025 Season</p>
+                    <p className="text-cream/80 text-lg mt-3 tracking-wide">2026 Season</p>
                 </Section>
 
                 {/* Rates table */}

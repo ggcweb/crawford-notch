@@ -96,17 +96,17 @@ export default function Home() {
                   Now accepting reservations
                 </div>
                 <h3 className="text-cream mt-6 mb-4">
-                  We&apos;re open for the 2025 season
+                  We&apos;re open for the 2026 season
                 </h3>
                 <p className="text-cream/90 mb-5">
-                  Please be aware that we require face masks in all buildings (bathhouse and store).
+                  Reserve early for the best selection of riverside sites and cabins &mdash; summer and foliage weekends fill up fast.
                 </p>
                 <div className="bg-bark-brown-dark/25 border border-cream/15 p-5 rounded-sm">
                   <p className="text-cream/90 text-[0.95rem]">
                     Full payment over the phone is due the week before you arrive. We&apos;ll verify your info, collect signatures, hand over your key card, and get you on your way.
                   </p>
                 </div>
-                <p className="text-xl italic font-display text-ochre mt-6">Stay healthy!</p>
+                <p className="text-xl italic font-display text-ochre mt-6">See you on the river!</p>
               </Card>
             </div>
           </div>
