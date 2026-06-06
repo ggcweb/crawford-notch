@@ -41,7 +41,7 @@ export default function Home() {
     description: 'Family-owned campground in the heart of the White Mountains, NH. Offering campsites, cabins, and yurts along the Saco River.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '1777 Route 302',
+      streetAddress: '1138 US Route 302',
       addressLocality: "Hart's Location",
       addressRegion: 'NH',
       postalCode: '03812',
