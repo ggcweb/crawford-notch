@@ -1,18 +1,26 @@
 import type { Metadata } from "next";
-import { Fraunces, Libre_Franklin } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const fraunces = Fraunces({
+// Self-hosted variable fonts (woff2 in ./fonts) so builds don't depend on
+// fetching from Google Fonts at build time. The Fraunces "full" files carry
+// the opsz, SOFT and ital axes; Libre Franklin carries wght and ital.
+const fraunces = localFont({
   variable: "--font-display",
-  subsets: ["latin"],
   display: "swap",
-  axes: ["opsz", "SOFT"],
+  src: [
+    { path: "./fonts/fraunces-latin-full-normal.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/fraunces-latin-full-italic.woff2", weight: "100 900", style: "italic" },
+  ],
 });
 
-const libreFranklin = Libre_Franklin({
+const libreFranklin = localFont({
   variable: "--font-body",
-  subsets: ["latin"],
   display: "swap",
+  src: [
+    { path: "./fonts/libre-franklin-latin-wght-normal.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/libre-franklin-latin-wght-italic.woff2", weight: "100 900", style: "italic" },
+  ],
 });
 
 export const metadata: Metadata = {
