@@ -1,7 +1,10 @@
 "use client"
 import Link from 'next/link';
+import { BOOKING_URL } from '@/lib/booking';
 
-const exploreLinks = [
+type FooterLink = { href: string; label: string; external?: boolean };
+
+const exploreLinks: FooterLink[] = [
     { href: '/campground', label: 'Campground' },
     { href: '/cabins', label: 'Cabins & Yurts' },
     { href: '/rates', label: 'Rates & Specials' },
@@ -9,8 +12,8 @@ const exploreLinks = [
     { href: '/campground-map', label: 'Campground Map' },
 ];
 
-const guestLinks = [
-    { href: '/reservations', label: 'Make a Reservation' },
+const guestLinks: FooterLink[] = [
+    { href: BOOKING_URL, label: 'Make a Reservation', external: true },
     { href: '/policies', label: 'Policies' },
     { href: '/rules', label: 'Rules' },
     { href: '/directions', label: 'Directions' },
@@ -60,7 +63,7 @@ export default function Footer() {
                             <ul className="space-y-2.5 list-none p-0">
                                 {exploreLinks.map((l) => (
                                     <li key={l.href}>
-                                        <Link href={l.href} className="text-cream/85 hover:text-ochre transition-colors text-[0.95rem]">{l.label}</Link>
+                                        <Link href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} className="text-cream/85 hover:text-ochre transition-colors text-[0.95rem]">{l.label}</Link>
                                     </li>
                                 ))}
                             </ul>
@@ -70,7 +73,7 @@ export default function Footer() {
                             <ul className="space-y-2.5 list-none p-0">
                                 {guestLinks.map((l) => (
                                     <li key={l.href}>
-                                        <Link href={l.href} className="text-cream/85 hover:text-ochre transition-colors text-[0.95rem]">{l.label}</Link>
+                                        <Link href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined} className="text-cream/85 hover:text-ochre transition-colors text-[0.95rem]">{l.label}</Link>
                                     </li>
                                 ))}
                             </ul>

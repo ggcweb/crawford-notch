@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
@@ -25,6 +26,11 @@ const extraCharges = [
     ["Firewood bundle", "$8"],
     ["Ice bag", "$3"],
 ];
+
+export const metadata: Metadata = {
+    title: "Rates & Specials",
+    description: "Seasonal camping rates, cabin and yurt pricing, and special offers at Crawford Notch Campground along the Saco River in New Hampshire's White Mountains.",
+};
 
 export default function Rates() {
     return (

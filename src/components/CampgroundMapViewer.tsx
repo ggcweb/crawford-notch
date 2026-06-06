@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
+import { BOOKING_URL } from '@/lib/booking';
 import {
     campgroundSites,
     getSiteTypeLabel,
@@ -268,13 +268,15 @@ export default function CampgroundMapViewer() {
 
                             {/* Actions */}
                             <div className="flex flex-col sm:flex-row gap-3">
-                                <Link
-                                    href={`/reservations?site=${encodeURIComponent(selectedSite.number)}`}
+                                <a
+                                    href={BOOKING_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="flex-1 inline-flex items-center justify-center py-3 px-6 text-white font-bold rounded-lg shadow-lg no-underline hover:no-underline hover:shadow-xl transition-shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
                                     style={{ backgroundColor: getSiteTypeColor(selectedSite.type) }}
                                 >
                                     Reserve This Site
-                                </Link>
+                                </a>
                                 <button
                                     onClick={() => setSelectedSite(null)}
                                     className="px-6 py-3 bg-tan-beige text-bark-brown-dark font-semibold rounded-lg hover:bg-tan-beige/70 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-forest-green focus-visible:ring-offset-2"

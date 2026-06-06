@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
@@ -6,6 +7,11 @@ import { Icon } from '@/components/ui/Icon';
 
 const essentials = ["Sleeping bags or bedding", "Pillows", "Towels", "Flashlight or lantern", "Cooking equipment", "Food and beverages", "Cooler with ice"];
 const recommended = ["Camp chairs", "Bug spray", "Sunscreen", "Hiking boots", "Swimwear", "Camera", "Books and games"];
+
+export const metadata: Metadata = {
+    title: "Cabins & Yurts",
+    description: "Cozy log cabins and yurts at Crawford Notch Campground along the Saco River in New Hampshire's White Mountains. Comfortable family lodging in the woods.",
+};
 
 export default function Cabins() {
     return (

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
@@ -28,6 +29,11 @@ const attractions: { icon: IconName; title: string; desc: string }[] = [
     { icon: "bridge", title: "Covered Bridges", desc: "Explore historic covered bridges throughout the region, perfect for photography." },
     { icon: "droplet", title: "Flume Gorge", desc: "Walk through this natural granite gorge in Franconia Notch State Park." },
 ];
+
+export const metadata: Metadata = {
+    title: "Activities",
+    description: "Hiking, swimming in the Saco River, fishing, and family fun at Crawford Notch Campground in New Hampshire's White Mountains. Discover things to do nearby.",
+};
 
 export default function Activities() {
     return (

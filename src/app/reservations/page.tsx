@@ -1,9 +1,16 @@
+import type { Metadata } from 'next';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Section } from '@/components/ui/Section';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import { BOOKING_URL } from '@/lib/booking';
 import Link from 'next/link';
+
+export const metadata: Metadata = {
+    title: "Reservations",
+    description: "Book your stay at Crawford Notch Campground in New Hampshire's White Mountains. Reserve campsites, cabins, and yurts online through Campspot or by phone.",
+};
 
 export default function Reservations() {
     return (
@@ -22,7 +29,7 @@ export default function Reservations() {
                             We&apos;re excited to welcome you to Crawford Notch Campground. To make a reservation, use our online booking system or contact us directly by phone.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button variant="accent" size="lg" href="https://www.campspot.com/book/crawfordnotchcampground" target="_blank" rel="noopener noreferrer">
+                            <Button variant="accent" size="lg" href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
                                 Book Online Now
                             </Button>
                             <Button variant="outline" size="lg" href="tel:6033742779">

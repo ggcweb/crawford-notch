@@ -4,14 +4,15 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { BOOKING_URL } from '@/lib/booking';
 
-const navLinks = [
+const navLinks: { href: string; label: string; external?: boolean }[] = [
     { href: '/', label: 'Home' },
     { href: '/campground', label: 'Campground' },
     { href: '/cabins', label: 'Cabins' },
     { href: '/campground-map', label: 'Map' },
     { href: '/rates', label: 'Rates' },
-    { href: '/reservations', label: 'Reservations' },
+    { href: BOOKING_URL, label: 'Reservations', external: true },
     { href: '/policies', label: 'Policies' },
     { href: '/rules', label: 'Rules' },
     { href: '/activities', label: 'Activities' },
@@ -125,6 +126,8 @@ export default function Header() {
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
+                                        target={link.external ? '_blank' : undefined}
+                                        rel={link.external ? 'noopener noreferrer' : undefined}
                                         aria-current={isActive ? 'page' : undefined}
                                         className={`relative inline-block px-2 lg:px-3 py-4 text-sm lg:text-[0.95rem] tracking-tight whitespace-nowrap transition-colors ${isActive ? 'text-ochre' : 'text-cream/85 hover:text-cream'}`}
                                     >
@@ -143,6 +146,8 @@ export default function Header() {
                                 <li key={link.href}>
                                     <Link
                                         href={link.href}
+                                        target={link.external ? '_blank' : undefined}
+                                        rel={link.external ? 'noopener noreferrer' : undefined}
                                         aria-current={pathname === link.href ? 'page' : undefined}
                                         className={`block px-6 py-3.5 text-lg border-b border-cream/5 transition-colors ${pathname === link.href ? 'text-ochre' : 'text-cream/90 hover:bg-forest-green/40 hover:text-cream'}`}
                                         onClick={() => setIsMenuOpen(false)}
