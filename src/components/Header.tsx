@@ -126,10 +126,10 @@ export default function Header() {
                                     <Link
                                         href={link.href}
                                         aria-current={isActive ? 'page' : undefined}
-                                        className={`relative inline-block px-3 py-4 text-[0.95rem] tracking-tight whitespace-nowrap transition-colors ${isActive ? 'text-ochre' : 'text-cream/85 hover:text-cream'}`}
+                                        className={`relative inline-block px-2 lg:px-3 py-4 text-sm lg:text-[0.95rem] tracking-tight whitespace-nowrap transition-colors ${isActive ? 'text-ochre' : 'text-cream/85 hover:text-cream'}`}
                                     >
                                         {link.label}
-                                        <span className={`absolute bottom-2 left-3 right-3 h-px bg-ochre origin-left transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
+                                        <span className={`absolute bottom-2 left-2 right-2 lg:left-3 lg:right-3 h-px bg-ochre origin-left transition-transform duration-300 ${isActive ? 'scale-x-100' : 'scale-x-0'}`} />
                                     </Link>
                                 </li>
                             );
