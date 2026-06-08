@@ -54,7 +54,7 @@ export default function Cabins() {
                             <div className="bg-bark-brown-dark/30 border border-cream/10 p-6 rounded-sm">
                                 <h4 className="text-ochre mb-4">Features</h4>
                                 <ul className="space-y-3 list-none p-0">
-                                    {["Sleeps 4–6 guests", "Electricity available in select cabins", "Outdoor fire ring & picnic table", "Near bathhouse facilities", "Bring your own linens"].map((item) => (
+                                    {["Sleeps 3–4 guests", "Electricity available in select cabins", "Outdoor fire ring & picnic table", "Near bathhouse facilities", "Bring your own linens"].map((item) => (
                                         <li key={item} className="flex items-start gap-3 text-cream/90">
                                             <svg className="w-5 h-5 text-ochre flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                                             <span>{item}</span>
@@ -73,7 +73,7 @@ export default function Cabins() {
                             <div className="bg-bark-brown-dark/30 border border-cream/10 p-6 rounded-sm">
                                 <h4 className="text-ochre mb-4">Features</h4>
                                 <ul className="space-y-3 list-none p-0">
-                                    {["Circular design with high ceilings", "Sleeps 4–6 guests", "Skylight for stargazing", "Outdoor cooking area", "Fire ring & picnic table", "Bring your own linens"].map((item) => (
+                                    {["Circular design with high ceilings", "Sleeps 3–4 guests", "Outdoor cooking area", "Fire ring & picnic table", "Bring your own linens"].map((item) => (
                                         <li key={item} className="flex items-start gap-3 text-cream/90">
                                             <svg className="w-5 h-5 text-ochre flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
                                             <span>{item}</span>

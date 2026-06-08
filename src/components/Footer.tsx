@@ -7,7 +7,7 @@ type FooterLink = { href: string; label: string; external?: boolean };
 const exploreLinks: FooterLink[] = [
     { href: '/campground', label: 'Campground' },
     { href: '/cabins', label: 'Cabins & Yurts' },
-    { href: '/rates', label: 'Rates & Specials' },
+    { href: '/rates', label: 'Rates & Reservations' },
     { href: '/activities', label: 'Activities' },
     { href: '/campground-map', label: 'Campground Map' },
 ];
