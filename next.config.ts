@@ -6,15 +6,9 @@ const nextConfig: NextConfig = {
   output: 'export',
 
   // Static export can't use the on-demand Image Optimization server, so
-  // images are served as-is. Remote images (e.g. Unsplash) still load fine.
+  // images are served as-is from the public/ folder.
   images: {
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-    ],
   },
 
   // Emit each route as its own folder with an index.html (e.g. /directions/

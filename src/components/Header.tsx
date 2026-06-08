@@ -61,8 +61,8 @@ export default function Header() {
             {/* Hero image */}
             <div className="relative w-full h-[460px] md:h-[580px]">
                 <Image
-                    src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070"
-                    alt="Mountains and forest of Crawford Notch, New Hampshire"
+                    src="/banner.jpg"
+                    alt="Wooded campsite road lined with trees and cabins at Crawford Notch Campground, New Hampshire"
                     fill
                     className="object-cover"
                     priority
