@@ -28,7 +28,7 @@ const activities: { icon: IconName; title: string; desc: string }[] = [
 
 const ctas: { href: string; icon: IconName; title: string; desc: string; bg: string; external?: boolean }[] = [
   { href: "/campground-map", icon: "map", title: "Campsite Map", desc: "Explore our interactive layout", bg: "bg-deep-burgundy" },
-  { href: "/rates", icon: "tag", title: "Rates & Specials", desc: "View our seasonal pricing", bg: "bg-bark-brown" },
+  { href: "/rates", icon: "tag", title: "Rates & Reservations", desc: "Payment & booking info", bg: "bg-bark-brown" },
   { href: BOOKING_URL, icon: "calendar", title: "Book Now", desc: "Start your adventure today", bg: "bg-forest-green", external: true },
 ];
 

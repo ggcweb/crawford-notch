@@ -7,8 +7,8 @@ import { Icon, type IconName } from '@/components/ui/Icon';
 
 const onSite: { icon: IconName; title: string; desc: string }[] = [
     { icon: "water", title: "River Swimming", desc: "Cool off in the crystal-clear waters of the Saco River, right at our doorstep." },
-    { icon: "tube", title: "River Tubing", desc: "Float lazily down the gentle Saco River on a relaxing tube ride." },
-    { icon: "fish", title: "Fishing", desc: "Try your luck catching trout and other fish in the river. License required." },
+    { icon: "tube", title: "River Tubing", desc: "Float lazily down the gentle Saco River. Please bring your own tube — we provide river access only, not tubes or equipment." },
+    { icon: "fish", title: "Fishing", desc: "Try your luck catching trout and other fish in the river. A valid New Hampshire fishing license is required — we do not sell or provide licenses." },
     { icon: "boot", title: "Hiking", desc: "Access trails directly from the campground or drive to nearby trailheads." },
     { icon: "binoculars", title: "Wildlife Watching", desc: "Spot moose, deer, eagles, and more in their natural habitat." },
     { icon: "star", title: "Stargazing", desc: "Enjoy incredible night skies far from city lights. No light pollution here." },
@@ -63,6 +63,9 @@ export default function Activities() {
                             </Card>
                         ))}
                     </div>
+                    <p className="text-center text-muted italic mt-10 max-w-2xl mx-auto">
+                        Please note: we provide river access only. We do not rent or provide tubes, fishing licenses, or other equipment — bring your own gear for activities on the water.
+                    </p>
                 </Section>
 
                 <Section variant="dark">

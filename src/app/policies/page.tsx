@@ -7,7 +7,7 @@ import { Icon } from '@/components/ui/Icon';
 
 export const metadata: Metadata = {
     title: "Policies",
-    description: "Reservation, deposit, cancellation, and campground policies for Crawford Notch Campground in New Hampshire. Plan your White Mountains stay with confidence.",
+    description: "Reservation, payment, cancellation, and campground policies for Crawford Notch Campground in New Hampshire. Plan your White Mountains stay with confidence.",
 };
 
 export default function Policies() {
@@ -25,10 +25,22 @@ export default function Policies() {
 
                 <Section variant="light">
                     <div className="max-w-4xl mx-auto space-y-8">
+                        <div className="bg-deep-burgundy text-cream p-8 md:p-10 rounded-sm border-l-4 border-l-ochre">
+                            <div className="flex items-start gap-4">
+                                <svg className="w-8 h-8 text-ochre flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+                                <div>
+                                    <h2 className="text-cream mb-3">Gate Hours</h2>
+                                    <p className="text-cream/90 text-lg">
+                                        The gate is <span className="font-semibold text-ochre">closed and locked from 10:00 PM to 8:00 AM</span>. During these hours no one can get in, but you can always get out.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
                         <Card className="p-8 md:p-10 border-t-2 border-t-forest-green">
                             <h2 className="text-bark-brown-dark mb-6">Reservation Policy</h2>
                             <ul className="space-y-4 text-foreground list-none p-0">
-                                {["A deposit is required to secure your reservation.", "Full payment is due one week before your arrival date.", "Reservations may be made by phone or through our online booking system.", "We accept cash and major credit cards. No personal checks."].map((item) => (
+                                {["Full payment is due as soon as you book.", "Reservations may be made by phone or through our online booking system.", "We accept cash and major credit cards. No personal checks."].map((item) => (
                                     <li key={item} className="flex items-start gap-3">
                                         <span className="w-6 h-6 flex items-center justify-center rounded-sm bg-forest-green-light flex-shrink-0 mt-0.5">
                                             <svg className="w-4 h-4 text-forest-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.2} d="M5 13l4 4L19 7" /></svg>
@@ -111,10 +123,6 @@ export default function Policies() {
                                         <span>{item}</span>
                                     </li>
                                 ))}
-                                <li className="flex items-start gap-3 p-4 bg-deep-burgundy/6 rounded-sm border border-deep-burgundy/15 mt-2">
-                                    <svg className="w-5 h-5 text-deep-burgundy flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
-                                    <span className="font-semibold text-deep-burgundy">$5/pet/night fee applies.</span>
-                                </li>
                             </ul>
                         </Card>
                     </div>
