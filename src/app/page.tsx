@@ -103,7 +103,7 @@ export default function Home() {
                 </p>
                 <div className="bg-bark-brown-dark/25 border border-cream/15 p-5 rounded-sm">
                   <p className="text-cream/90 text-[0.95rem]">
-                    Full payment over the phone is due the week before you arrive. We&apos;ll verify your info, collect signatures, hand over your key card, and get you on your way.
+                    Full payment is due as soon as you book. When you arrive, we&apos;ll verify your info, collect signatures, hand over your key card, and get you on your way.
                   </p>
                 </div>
                 <p className="text-xl italic font-display text-ochre mt-6">See you on the river!</p>
