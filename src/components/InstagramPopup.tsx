@@ -2,38 +2,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/crawfordnotchcamping/';
-const STORAGE_KEY = 'instagram-popup-dismissed-at';
-const RESHOW_AFTER_MS = 30 * 24 * 60 * 60 * 1000; // show again after 30 days
-const OPEN_DELAY_MS = 0; // show as soon as the page loads
-
-function wasRecentlyDismissed(): boolean {
-    try {
-        const dismissedAt = window.localStorage.getItem(STORAGE_KEY);
-        if (!dismissedAt) return false;
-        return Date.now() - Number(dismissedAt) < RESHOW_AFTER_MS;
-    } catch {
-        return false;
-    }
-}
 
 export default function InstagramPopup() {
     const [open, setOpen] = useState(false);
     const dialogRef = useRef<HTMLDivElement>(null);
 
+    // Shown on every page load; dismissing only hides it until the next load.
     useEffect(() => {
-        if (wasRecentlyDismissed()) return;
-        const timer = window.setTimeout(() => setOpen(true), OPEN_DELAY_MS);
-        return () => window.clearTimeout(timer);
+        setOpen(true);
     }, []);
 
-    const dismiss = useCallback(() => {
-        setOpen(false);
-        try {
-            window.localStorage.setItem(STORAGE_KEY, String(Date.now()));
-        } catch {
-            // localStorage unavailable (private browsing) — popup just reappears next visit
-        }
-    }, []);
+    const dismiss = useCallback(() => setOpen(false), []);
 
     useEffect(() => {
         if (!open) return;
