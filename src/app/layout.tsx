@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import InstagramPopup from "@/components/InstagramPopup";
 
 // Self-hosted variable fonts (woff2 in ./fonts) so builds don't depend on
 // fetching from Google Fonts at build time. The Fraunces "full" files carry
@@ -69,6 +70,7 @@ export default function RootLayout({
         className={`${fraunces.variable} ${libreFranklin.variable} antialiased`}
       >
         {children}
+        <InstagramPopup />
       </body>
     </html>
   );
