@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 const INSTAGRAM_URL = 'https://www.instagram.com/crawfordnotchcamping/';
 const STORAGE_KEY = 'instagram-popup-dismissed-at';
 const RESHOW_AFTER_MS = 30 * 24 * 60 * 60 * 1000; // show again after 30 days
-const OPEN_DELAY_MS = 2500;
+const OPEN_DELAY_MS = 0; // show as soon as the page loads
 
 function wasRecentlyDismissed(): boolean {
     try {
